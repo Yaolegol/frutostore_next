@@ -1,0 +1,57 @@
+@import '/src/styles/adaptive';
+@import '/src/styles/colors';
+
+@mixin f_default {
+    font-size: 16px;
+    line-height: 26px;
+}
+
+@mixin f_h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 52px;
+}
+
+@mixin f_h2 {
+    font-size: 32px;
+    line-height: 36px;
+    text-transform: uppercase;
+
+    @media #{$mobile_max} {
+        font-size: 30px;
+        line-height: 36px;
+    }
+}
+
+@mixin f_h3 {
+    font-size: 44px;
+    line-height: 52px;
+    text-transform: uppercase;
+}
+
+@mixin f_h4 {
+    font-size: 50px;
+    line-height: 56px;
+
+    @media #{$mobile_max} {
+        font-size: 24px;
+        line-height: 32px;
+    }
+}
+
+@mixin f_h5 {
+    font-size: 22px;
+    line-height: 32px;
+}
+
+@mixin f_h6 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+    text-transform: capitalize;
+}
+
+@mixin f_small {
+    font-size: 12px;
+    line-height: 14px;
+}

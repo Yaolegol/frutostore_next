@@ -1,0 +1,22 @@
+.index {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.description {
+    margin-top: 5px;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.title {
+    font-weight: 700;
+    text-align: right;
+}

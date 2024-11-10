@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "skipLibCheck": true,
+        "strict": true,
+        "target": "ES2020"
+    },
+    "include": ["./"]
+}

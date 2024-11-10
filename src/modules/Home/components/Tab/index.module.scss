@@ -1,0 +1,29 @@
+@import '/src/styles/colors';
+@import '/src/styles/transition';
+
+.index {
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transition: color $transitionDefault;
+
+    &:hover {
+        color: $blue;
+    }
+
+    &.active {
+        border-color: $blue;
+    }
+}
+
+.icon {
+    height: 44px;
+    width: 44px;
+}
+
+.title {
+    margin-top: 10px;
+}
