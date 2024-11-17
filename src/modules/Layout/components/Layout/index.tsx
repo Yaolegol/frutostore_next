@@ -8,9 +8,9 @@ interface IProps {
 export const Layout: FC<IProps> = ({ children }) => {
     return (
         <body className={style.index}>
-            <header className={style.header}></header>
+            <header className={style.header}>TEST HEADER</header>
             <div className={style.content}>{children}</div>
-            <footer className={style.footer}></footer>
+            <footer className={style.footer}>TEST FOOTER</footer>
         </body>
     );
 };
