@@ -1,5 +1,7 @@
 $desktop_max: '(max-width: 1920px)';
-$laptop_max: '(max-width: 1440px)';
+$desktop_min: '(min-width: 1440px)';
+$laptop_max: '(max-width: 1439px)';
 $laptop_min: '(min-width: 1024px)';
 $tablet_max: '(max-width: 1023px)';
+$tablet_min: '(min-width: 768px)';
 $mobile_max: '(max-width: 767px)';

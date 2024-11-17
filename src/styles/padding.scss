@@ -1,8 +1,0 @@
-@import '/src/styles/adaptive';
-
-.padding_mobile {
-    @media #{mobile_max} {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-}
