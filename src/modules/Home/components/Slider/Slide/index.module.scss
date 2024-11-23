@@ -1,0 +1,11 @@
+@import "@/styles/layout";
+
+.index {
+    aspect-ratio: 2 / 1;
+    text-align: center;
+}
+
+.image {
+    height: 100%;
+    object-fit: cover;
+}

@@ -1,3 +1,5 @@
-.index {
+@import "@/styles/layout";
 
+.container {
+    @include layout-container;
 }
