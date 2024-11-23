@@ -5,7 +5,7 @@ import style from './index.module.scss';
 export const Logo: FC = () => {
     return (
         <Link className={style.index} href="/">
-            <img alt="logo" className={style.image} src="/images/logo.png" />
+            <img alt="logo" className={style.image} src="/images/logo.svg" />
         </Link>
     );
 };

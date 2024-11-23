@@ -1,7 +1,5 @@
-@import "@/styles/colors";
 @import "@/styles/layout";
 @import "@/styles/shadow";
-@import "@/styles/transition";
 
 .index {
     box-shadow: $shadow
@@ -14,44 +12,4 @@
     display: flex;
     padding-bottom: 20px;
     padding-top: 20px;
-}
-
-.areaLeft {
-    flex: 0 0 200px;
-}
-
-.areaRight {
-    align-items: center;
-    display: flex;
-    flex: 0 0 200px;
-    gap: 40px;
-    justify-content: flex-end;
-}
-
-.cartIcon {
-    height: 24px;
-    width: 24px;
-}
-
-.nav {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex: 1 1 auto;
-    gap: 40px;
-}
-
-.navItem {
-    border-radius: 20px;
-    padding: 10px 20px;
-    transition: all $transitionDefault;
-
-    &:hover {
-        background: $green;
-    }
-}
-
-.profileIcon {
-    height: 24px;
-    width: 24px;
 }
