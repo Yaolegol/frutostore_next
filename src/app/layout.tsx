@@ -1,13 +1,12 @@
 import '@/styles/index.scss';
+import { ReactNode } from 'react';
 
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
-    return (
-        <html lang="en">
-            {children}
-        </html>
-    );
+interface IProps {
+    children: ReactNode;
 }
+
+const RootLayout = ({ children }: IProps) => {
+    return <html lang="en">{children}</html>;
+};
+
+export default RootLayout;
