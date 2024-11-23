@@ -1,0 +1,35 @@
+@import "@/styles/colors";
+@import "@/styles/layout";
+@import "@/styles/transition";
+
+.index {
+    @include layout-container;
+
+    align-items: center;
+    display: flex;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.cartIcon {
+    height: 24px;
+    width: 24px;
+}
+
+.nav {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex: 1 1 auto;
+    gap: 40px;
+}
+
+.navItem {
+    border-radius: 20px;
+    padding: 10px 20px;
+    transition: all $transitionDefault;
+
+    &:hover {
+        background: $green;
+    }
+}
