@@ -11,6 +11,18 @@
     padding-top: 20px;
 }
 
+.areaLeft {
+    flex: 0 0 200px;
+}
+
+.areaRight {
+    align-items: center;
+    display: flex;
+    flex: 0 0 200px;
+    gap: 40px;
+    justify-content: flex-end;
+}
+
 .cartIcon {
     height: 24px;
     width: 24px;
@@ -32,4 +44,9 @@
     &:hover {
         background: $green;
     }
+}
+
+.profileIcon {
+    height: 24px;
+    width: 24px;
 }

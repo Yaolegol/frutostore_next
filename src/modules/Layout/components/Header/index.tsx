@@ -7,7 +7,7 @@ import style from './index.module.scss';
 export const Header: FC = () => {
     return (
         <header className={style.index}>
-            <div>
+            <div className={style.areaLeft}>
                 <Logo />
             </div>
             <nav className={style.nav}>
@@ -21,7 +21,8 @@ export const Header: FC = () => {
                     Корзина
                 </Link>
             </nav>
-            <div>
+            <div className={style.areaRight}>
+                <Icon className={style.profileIcon} name="profile" />
                 <Icon className={style.cartIcon} name="cart" />
             </div>
         </header>
