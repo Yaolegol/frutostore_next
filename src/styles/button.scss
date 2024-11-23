@@ -1,0 +1,18 @@
+@import "/src/styles/colors";
+@import "/src/styles/shadow";
+@import "/src/styles/transition";
+
+@mixin button {
+    border: 1px solid $green-10;
+    border-radius: 8px;
+    box-shadow: $shadow-1;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 20px 40px;
+    text-transform: uppercase;
+    transition: $transitionDefault;
+
+    &:hover {
+        background: $green;
+    }
+}

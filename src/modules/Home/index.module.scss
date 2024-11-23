@@ -1,5 +1,15 @@
 @import "@/styles/layout";
 
-.container {
+.link {
     @include layout-container;
+
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.slider {
+    @include layout-container;
+
+    line-height: 0;
 }
