@@ -1,8 +1,13 @@
 @import "@/styles/colors";
 @import "@/styles/layout";
+@import "@/styles/shadow";
 @import "@/styles/transition";
 
 .index {
+    box-shadow: $shadow
+}
+
+.container {
     @include layout-container;
 
     align-items: center;
