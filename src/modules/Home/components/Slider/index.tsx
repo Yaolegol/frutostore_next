@@ -1,10 +1,12 @@
 'use client';
 
+import { Slide } from '@/modules/Home/components/Slider/Slide';
+import { SliderNextButton } from '@/modules/Home/components/Slider/SliderNextButton';
+import { SliderPrevButton } from '@/modules/Home/components/Slider/SliderPrevButton';
 import { FC } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import style from './index.module.scss';
-import { Slide } from '@/modules/Home/components/Slider/Slide';
 
 export const Slider: FC = () => {
     return (
@@ -22,6 +24,8 @@ export const Slider: FC = () => {
                         src="/images/pages/home/grapefruit.jpg"
                     />
                 </SwiperSlide>
+                <SliderPrevButton />
+                <SliderNextButton />
             </Swiper>
         </div>
     );

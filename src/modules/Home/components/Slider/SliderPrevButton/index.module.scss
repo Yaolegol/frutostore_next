@@ -1,0 +1,9 @@
+@import "@/styles/button";
+
+.index {
+    left: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    z-index: 1;
+}

@@ -3,7 +3,6 @@
 @import "/src/styles/transition";
 
 @mixin button {
-    border: 1px solid $green-10;
     border-radius: 8px;
     box-shadow: $shadow-1;
     cursor: pointer;
