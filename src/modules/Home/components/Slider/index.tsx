@@ -3,15 +3,17 @@
 import { Slide } from '@/modules/Home/components/Slider/Slide';
 import { SliderNextButton } from '@/modules/Home/components/Slider/SliderNextButton';
 import { SliderPrevButton } from '@/modules/Home/components/Slider/SliderPrevButton';
-import { FC } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { FC, useState } from 'react';
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import style from './index.module.scss';
 
 export const Slider: FC = () => {
+    const [swiper, setSwiper] = useState<SwiperClass>();
+
     return (
         <div className={style.index}>
-            <Swiper>
+            <Swiper onSwiper={setSwiper}>
                 <SwiperSlide>
                     <Slide alt="apple" src="/images/pages/home/apple.jpg" />
                 </SwiperSlide>
@@ -24,9 +26,9 @@ export const Slider: FC = () => {
                         src="/images/pages/home/grapefruit.jpg"
                     />
                 </SwiperSlide>
-                <SliderPrevButton />
-                <SliderNextButton />
             </Swiper>
+            <SliderPrevButton swiper={swiper} />
+            <SliderNextButton swiper={swiper} />
         </div>
     );
 };

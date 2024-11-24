@@ -1,24 +1,27 @@
 import { SliderButton } from '@/components/Button';
 import { FC, useCallback, useEffect, useState } from 'react';
-import { useSwiper } from 'swiper/react';
+import { SwiperClass } from 'swiper/react';
 import style from './index.module.scss';
 
-export const SliderPrevButton: FC = () => {
+interface IProps {
+    swiper?: SwiperClass;
+}
+
+export const SliderPrevButton: FC<IProps> = ({ swiper }) => {
     const [isBeginning, setIsBeginning] = useState(true);
-    const swiper = useSwiper();
 
     useEffect(() => {
-        swiper.on('slideChange', (instance) => {
-            setIsBeginning(instance.isBeginning);
+        swiper?.on('slideChange', (sw) => {
+            setIsBeginning(sw.isBeginning);
         });
 
         return () => {
-            swiper.off('slideChange');
+            swiper?.off('slideChange');
         };
     }, [swiper]);
 
     const handleNext = useCallback(() => {
-        swiper.slidePrev();
+        swiper?.slidePrev();
     }, [swiper]);
 
     return (
