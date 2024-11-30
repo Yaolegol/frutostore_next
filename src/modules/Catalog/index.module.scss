@@ -1,5 +1,14 @@
 @import "@/styles/layout";
+@import "@/styles/page";
 
 .index {
     @include layout-container;
+    @include page;
+}
+
+.content {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 3fr;
+    margin-top: 48px;
 }
