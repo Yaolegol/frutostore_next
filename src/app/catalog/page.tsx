@@ -1,14 +1,14 @@
 import { getServerLangData } from '@/helpers/lang/server';
-import { Home } from '@/modules/Home';
+import { Catalog } from '@/modules/Catalog';
 import { LangContextProvider } from '@/modules/Lang/provider';
 import { Layout } from '@/modules/Layout/components/Layout';
 import { Metadata, NextPage } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Fruits store',
+    title: 'Fruits store catalog',
 };
 
-const HomePage: NextPage = async () => {
+const CatalogPage: NextPage = async () => {
     const { defaultLangOption, defaultLangText } = await getServerLangData();
 
     return (
@@ -17,10 +17,10 @@ const HomePage: NextPage = async () => {
             defaultLangText={defaultLangText}
         >
             <Layout>
-                <Home />
+                <Catalog />
             </Layout>
         </LangContextProvider>
     );
 };
 
-export default HomePage;
+export default CatalogPage;
