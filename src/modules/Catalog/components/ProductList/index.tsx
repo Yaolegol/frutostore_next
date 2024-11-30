@@ -6,11 +6,12 @@ import style from './index.module.scss';
 export const ProductList: FC = () => {
     return (
         <div className={style.index}>
-            {productsList.map(({ description, image, price, title }) => {
+            {productsList.map(({ description, id, image, price, title }) => {
                 return (
-                    <div key={title}>
+                    <div key={id}>
                         <ProductCard
                             description={description}
+                            id={id}
                             image={image}
                             price={price}
                             title={title}

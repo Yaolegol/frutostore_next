@@ -1,9 +1,11 @@
 import { getPriceFormatted } from '@/helpers/price';
 import { FC } from 'react';
 import style from './index.module.scss';
+import { BuyBlock } from '@/modules/ProductCard/components/BuyBlock';
 
 interface IProps {
     description: string;
+    id: string;
     image: string;
     price: number;
     title: string;
@@ -11,6 +13,7 @@ interface IProps {
 
 export const ProductCard: FC<IProps> = ({
     description,
+    id,
     image,
     price,
     title,
@@ -27,7 +30,9 @@ export const ProductCard: FC<IProps> = ({
                     <div className={style.price}>
                         {getPriceFormatted(price)}
                     </div>
-                    <div className={style.cart}></div>
+                    <div className={style.cart}>
+                        <BuyBlock id={id} />
+                    </div>
                 </div>
             </div>
         </div>
