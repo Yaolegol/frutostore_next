@@ -1,3 +1,4 @@
+@import "@/styles/colors";
 @import "@/styles/layout";
 @import "@/styles/line-clamp";
 
@@ -5,8 +6,12 @@
     border-radius: 20px;
 }
 
-.content {
+.container {
     padding: 15px 10px 20px;
+}
+
+.counter {
+    flex: 0 0 auto;
 }
 
 .description {
@@ -21,8 +26,25 @@
     width: 100%;
 }
 
+.price {
+    color: $gray-90;
+    flex: 0 0 auto;
+    font-weight: 700;
+}
+
+.priceArea {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
 .title {
     @include line-clamp;
     
     font-weight: 700;
+}
+
+.titleArea {
+    padding: 0 0 10px;
 }
