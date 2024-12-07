@@ -1,11 +1,11 @@
 import { getPriceFormatted } from '@/helpers/price';
+import { BuyBlock } from '@/modules/ProductCard/components/BuyBlock';
 import { FC } from 'react';
 import style from './index.module.scss';
-import { BuyBlock } from '@/modules/ProductCard/components/BuyBlock';
 
 interface IProps {
     description: string;
-    id: string;
+    id: number;
     image: string;
     price: number;
     title: string;

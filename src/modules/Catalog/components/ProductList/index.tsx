@@ -1,12 +1,16 @@
-import { productsList } from '@/modules/Catalog/mock/products';
+import { ICatalogProduct } from '@/modules/Catalog/types';
 import { ProductCard } from '@/modules/ProductCard';
 import { FC } from 'react';
 import style from './index.module.scss';
 
-export const ProductList: FC = () => {
+interface IProps {
+    list: ICatalogProduct[];
+}
+
+export const ProductList: FC<IProps> = ({ list }) => {
     return (
         <div className={style.index}>
-            {productsList.map(({ description, id, image, price, title }) => {
+            {list.map(({ description, id, image, price, title }) => {
                 return (
                     <div key={id}>
                         <ProductCard

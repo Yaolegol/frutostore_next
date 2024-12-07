@@ -4,7 +4,7 @@ import { FC } from 'react';
 import style from './index.module.scss';
 
 interface IProps {
-    id: string;
+    id: number;
 }
 
 export const BuyBlock: FC<IProps> = ({ id }) => {
