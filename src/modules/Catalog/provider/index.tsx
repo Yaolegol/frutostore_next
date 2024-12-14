@@ -52,13 +52,15 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
             };
         }
 
-        const { data: products } = data;
+        const { data: products, last_page } = data;
 
         return {
             getNextPage,
+            lastPage: last_page,
+            page,
             products,
         };
-    }, [data, getNextPage]);
+    }, [data, getNextPage, page]);
 
     return (
         <CatalogContext.Provider value={value}>

@@ -6,7 +6,8 @@ import { FC, useCallback, useContext } from 'react';
 import style from './index.module.scss';
 
 export const ProductList: FC = () => {
-    const { getNextPage, products } = useContext(CatalogContext);
+    const { getNextPage, lastPage, products, page } =
+        useContext(CatalogContext);
 
     const handleClick = useCallback(() => {
         getNextPage?.();
@@ -27,9 +28,11 @@ export const ProductList: FC = () => {
                     </div>
                 );
             })}
-            <button onClick={handleClick} type="button">
-                Показать еще
-            </button>
+            {page && lastPage && page < lastPage ? (
+                <button onClick={handleClick} type="button">
+                    Показать еще
+                </button>
+            ) : null}
         </div>
     );
 };
