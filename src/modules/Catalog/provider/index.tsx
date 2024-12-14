@@ -4,7 +4,15 @@ import { CatalogContext } from '@/modules/Catalog/context';
 import { CatalogService } from '@/modules/Catalog/service';
 import { ICatalogData } from '@/modules/Catalog/types';
 import { scrollToTop } from '@/helpers/scroll';
-import { FC, useState, ReactNode, useMemo, useCallback } from 'react';
+import {
+    FC,
+    useState,
+    ReactNode,
+    useMemo,
+    useCallback,
+    useEffect,
+} from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 interface IProps {
     children: ReactNode;
@@ -14,58 +22,115 @@ interface IProps {
 const catalogService = new CatalogService();
 
 export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    const [currentSearchParams, setCurrentSearchParams] =
+        useState(searchParams);
+    const [paginationType, setPaginationType] = useState(0);
     const [data, setData] = useState<ICatalogData | null>(defaultData);
-    const [page, setPage] = useState(defaultData?.current_page ?? 1);
+
+    const getPage = useCallback(() => {
+        const page = searchParams.get('page') ?? 1;
+
+        return Number(page);
+    }, [searchParams]);
+
+    const getData = useCallback(
+        async (newPage: number) => {
+            const newData = await catalogService.getProducts({ page: newPage });
+
+            if (!newData) {
+                return;
+            }
+
+            if (paginationType === 1) {
+                const products = data?.data ?? [];
+                products.push(...newData.data);
+
+                setData({
+                    ...newData,
+                    data: products,
+                });
+
+                return;
+            }
+
+            setData(newData);
+        },
+        [data, paginationType],
+    );
+
+    useEffect(() => {
+        if (searchParams.toString() === currentSearchParams.toString()) {
+            return;
+        }
+
+        const page = getPage();
+
+        setCurrentSearchParams(searchParams);
+        getData(page);
+    }, [currentSearchParams, getData, getPage, searchParams]);
+
+    const setPaginationQuery = useCallback(
+        (newPage: number) => {
+            const urlSP = new URLSearchParams(window.location.search);
+            urlSP.delete('page');
+
+            if (newPage !== 1) {
+                urlSP.append('page', String(newPage));
+            }
+
+            const queryParams = urlSP.toString();
+            const query = queryParams ? `?${queryParams}` : '';
+
+            router.push(pathname + query);
+        },
+        [pathname, router],
+    );
 
     const toFirstPage = useCallback(async () => {
+        setPaginationType(0);
+
+        const page = getPage();
+
         if (page === 1) {
             scrollToTop();
 
             return;
         }
 
-        const newData = await catalogService.getProducts({ page: 1 });
-
-        if (!newData) {
-            return;
-        }
-
-        setData(newData);
-        setPage(1);
+        setPaginationQuery(1);
 
         scrollToTop();
-    }, [page]);
+    }, [getPage, setPaginationQuery]);
 
     const toLastPage = useCallback(async () => {
+        setPaginationType(0);
+
         if (!data) {
             return;
         }
 
+        const page = getPage();
         const lastPage = data.last_page;
 
         if (page === lastPage) {
             return;
         }
 
-        const newData = await catalogService.getProducts({
-            page: lastPage,
-        });
-
-        if (!newData) {
-            return;
-        }
-
-        setData(newData);
-        setPage(lastPage);
+        setPaginationQuery(lastPage);
 
         scrollToTop();
-    }, [data, page]);
+    }, [data, getPage, setPaginationQuery]);
 
     const getNextPage = useCallback(async () => {
         if (!data) {
             return;
         }
 
+        const page = getPage();
         const nextPage = page + 1;
         const { last_page } = data;
 
@@ -73,22 +138,9 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
             return;
         }
 
-        const newData = await catalogService.getProducts({ page: nextPage });
-
-        if (!newData) {
-            return;
-        }
-
-        const products = data?.data ?? [];
-        products.push(...newData.data);
-
-        setData({
-            ...newData,
-            data: products,
-        });
-
-        setPage(nextPage);
-    }, [data, page]);
+        setPaginationType(1);
+        setPaginationQuery(nextPage);
+    }, [data, getPage, setPaginationQuery]);
 
     const value = useMemo(() => {
         if (!data) {
@@ -98,6 +150,7 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
         }
 
         const { data: products, last_page } = data;
+        const page = getPage();
 
         return {
             getNextPage,
@@ -107,7 +160,7 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
             toFirstPage,
             toLastPage,
         };
-    }, [data, getNextPage, page, toFirstPage, toLastPage]);
+    }, [data, getNextPage, getPage, toFirstPage, toLastPage]);
 
     return (
         <CatalogContext.Provider value={value}>
