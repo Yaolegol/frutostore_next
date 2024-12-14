@@ -87,7 +87,9 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
             const queryParams = urlSP.toString();
             const query = queryParams ? `?${queryParams}` : '';
 
-            router.push(pathname + query);
+            router.push(pathname + query, {
+                scroll: false,
+            });
         },
         [pathname, router],
     );
