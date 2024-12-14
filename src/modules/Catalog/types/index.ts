@@ -17,5 +17,5 @@ export interface ICatalogData {
 }
 
 export interface IQueryParams {
-    [key: string]: string;
+    [key: string]: string | number;
 }

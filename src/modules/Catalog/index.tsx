@@ -1,3 +1,5 @@
+'use client';
+
 import { ProductList } from '@/modules/Catalog/components/ProductList';
 import { FC } from 'react';
 import style from './index.module.scss';

@@ -2,7 +2,7 @@
 
 import { CatalogContext } from '@/modules/Catalog/context';
 import { CatalogService } from '@/modules/Catalog/service';
-import { ICatalogData, IQueryParams } from '@/modules/Catalog/types';
+import { ICatalogData } from '@/modules/Catalog/types';
 import { FC, useState, ReactNode, useMemo, useCallback } from 'react';
 
 interface IProps {
@@ -14,12 +14,36 @@ const catalogService = new CatalogService();
 
 export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
     const [data, setData] = useState<ICatalogData | null>(defaultData);
+    const [page, setPage] = useState(defaultData?.current_page ?? 1);
 
-    const getProducts = useCallback(async (params: IQueryParams) => {
-        const data = await catalogService.getProducts(params);
+    const getNextPage = useCallback(async () => {
+        if (!data) {
+            return;
+        }
 
-        setData(data);
-    }, []);
+        const nextPage = page + 1;
+        const { last_page } = data;
+
+        if (nextPage > last_page) {
+            return;
+        }
+
+        const newData = await catalogService.getProducts({ page: nextPage });
+
+        if (!newData) {
+            return;
+        }
+
+        const products = data?.data ?? [];
+        products.push(...newData.data);
+
+        setData({
+            ...newData,
+            data: products,
+        });
+
+        setPage(nextPage);
+    }, [data, page]);
 
     const value = useMemo(() => {
         if (!data) {
@@ -31,10 +55,10 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
         const { data: products } = data;
 
         return {
-            getProducts,
+            getNextPage,
             products,
         };
-    }, []);
+    }, [data, getNextPage]);
 
     return (
         <CatalogContext.Provider value={value}>

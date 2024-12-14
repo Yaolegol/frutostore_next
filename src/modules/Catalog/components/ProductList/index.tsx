@@ -2,11 +2,15 @@
 
 import { CatalogContext } from '@/modules/Catalog/context';
 import { ProductCard } from '@/modules/ProductCard';
-import { FC, useContext } from 'react';
+import { FC, useCallback, useContext } from 'react';
 import style from './index.module.scss';
 
 export const ProductList: FC = () => {
-    const { products } = useContext(CatalogContext);
+    const { getNextPage, products } = useContext(CatalogContext);
+
+    const handleClick = useCallback(() => {
+        getNextPage?.();
+    }, [getNextPage]);
 
     return (
         <div className={style.index}>
@@ -23,6 +27,9 @@ export const ProductList: FC = () => {
                     </div>
                 );
             })}
+            <button onClick={handleClick} type="button">
+                Показать еще
+            </button>
         </div>
     );
 };
