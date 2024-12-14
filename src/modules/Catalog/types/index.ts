@@ -5,3 +5,11 @@ export interface ICatalogProduct {
     price: number;
     title: string;
 }
+
+export interface ICatalogData {
+    current_page: number;
+    data: ICatalogProduct[];
+    last_page: number;
+    per_page: number;
+    total: number;
+}

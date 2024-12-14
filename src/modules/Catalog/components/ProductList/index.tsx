@@ -1,16 +1,16 @@
-import { ICatalogProduct } from '@/modules/Catalog/types';
+'use client';
+
+import { CatalogContext } from '@/modules/Catalog/context';
 import { ProductCard } from '@/modules/ProductCard';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import style from './index.module.scss';
 
-interface IProps {
-    list: ICatalogProduct[];
-}
+export const ProductList: FC = () => {
+    const { products } = useContext(CatalogContext);
 
-export const ProductList: FC<IProps> = ({ list }) => {
     return (
         <div className={style.index}>
-            {list.map(({ description, id, image, price, title }) => {
+            {products.map(({ description, id, image, price, title }) => {
                 return (
                     <div key={id}>
                         <ProductCard

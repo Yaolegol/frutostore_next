@@ -4,6 +4,7 @@ import { CatalogService } from '@/modules/Catalog/service';
 import { LangContextProvider } from '@/modules/Lang/provider';
 import { Layout } from '@/modules/Layout/components/Layout';
 import { Metadata, NextPage } from 'next';
+import { CatalogProvider } from '@/modules/Catalog/provider';
 
 export const metadata: Metadata = {
     title: 'Fruits store catalog',
@@ -22,7 +23,9 @@ const CatalogPage: NextPage = async () => {
             defaultLangText={defaultLangText}
         >
             <Layout>
-                <Catalog list={data} />
+                <CatalogProvider defaultData={data}>
+                    <Catalog />
+                </CatalogProvider>
             </Layout>
         </LangContextProvider>
     );
