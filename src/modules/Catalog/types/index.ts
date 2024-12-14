@@ -1,3 +1,5 @@
+import { Record } from 'immutable';
+
 export interface ICatalogProduct {
     description: string;
     id: number;
@@ -12,4 +14,8 @@ export interface ICatalogData {
     last_page: number;
     per_page: number;
     total: number;
+}
+
+export interface IQueryParams {
+    [key: string]: string;
 }
