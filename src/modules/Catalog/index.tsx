@@ -1,5 +1,6 @@
 'use client';
 
+import { Pagination } from '@/modules/Catalog/components/Pagination';
 import { ProductList } from '@/modules/Catalog/components/ProductList';
 import { ShowMoreButton } from '@/modules/Catalog/components/ShowMoreButton';
 import { FC } from 'react';
@@ -13,6 +14,9 @@ export const Catalog: FC = () => {
                 <div></div>
                 <div>
                     <ProductList />
+                    <div>
+                        <Pagination />
+                    </div>
                     <div className={style.showMoreButton}>
                         <ShowMoreButton />
                     </div>

@@ -1,0 +1,12 @@
+@import "@/styles/layout";
+
+.index {
+    align-items: center;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+.button {
+    cursor: pointer;
+}

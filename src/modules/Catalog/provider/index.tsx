@@ -3,6 +3,7 @@
 import { CatalogContext } from '@/modules/Catalog/context';
 import { CatalogService } from '@/modules/Catalog/service';
 import { ICatalogData } from '@/modules/Catalog/types';
+import { scrollToTop } from '@/helpers/scroll';
 import { FC, useState, ReactNode, useMemo, useCallback } from 'react';
 
 interface IProps {
@@ -15,6 +16,50 @@ const catalogService = new CatalogService();
 export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
     const [data, setData] = useState<ICatalogData | null>(defaultData);
     const [page, setPage] = useState(defaultData?.current_page ?? 1);
+
+    const toFirstPage = useCallback(async () => {
+        if (page === 1) {
+            scrollToTop();
+
+            return;
+        }
+
+        const newData = await catalogService.getProducts({ page: 1 });
+
+        if (!newData) {
+            return;
+        }
+
+        setData(newData);
+        setPage(1);
+
+        scrollToTop();
+    }, [page]);
+
+    const toLastPage = useCallback(async () => {
+        if (!data) {
+            return;
+        }
+
+        const lastPage = data.last_page;
+
+        if (page === lastPage) {
+            return;
+        }
+
+        const newData = await catalogService.getProducts({
+            page: lastPage,
+        });
+
+        if (!newData) {
+            return;
+        }
+
+        setData(newData);
+        setPage(lastPage);
+
+        scrollToTop();
+    }, [data, page]);
 
     const getNextPage = useCallback(async () => {
         if (!data) {
@@ -59,8 +104,10 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
             lastPage: last_page,
             page,
             products,
+            toFirstPage,
+            toLastPage,
         };
-    }, [data, getNextPage, page]);
+    }, [data, getNextPage, page, toFirstPage, toLastPage]);
 
     return (
         <CatalogContext.Provider value={value}>

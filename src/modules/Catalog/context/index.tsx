@@ -8,6 +8,8 @@ export interface ICatalogContext {
     lastPage?: number;
     page?: number;
     products: ICatalogProduct[];
+    toFirstPage?: () => Promise<void>;
+    toLastPage?: () => Promise<void>;
 }
 
 export const CatalogContext = createContext<ICatalogContext>({
