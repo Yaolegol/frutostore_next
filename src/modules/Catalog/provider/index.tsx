@@ -54,6 +54,8 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
                     data: products,
                 });
 
+                setPaginationType(0);
+
                 return;
             }
 
@@ -91,8 +93,6 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
     );
 
     const toFirstPage = useCallback(async () => {
-        setPaginationType(0);
-
         const page = getPage();
 
         if (page === 1) {
@@ -107,8 +107,6 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
     }, [getPage, setPaginationQuery]);
 
     const toLastPage = useCallback(async () => {
-        setPaginationType(0);
-
         if (!data) {
             return;
         }
