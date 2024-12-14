@@ -1,4 +1,4 @@
-import { SliderButton } from '@/components/Button';
+import { SliderButton } from '@/components/SliderButton';
 import { FC, useCallback, useEffect, useState } from 'react';
 import { SwiperClass } from 'swiper/react';
 import style from './index.module.scss';

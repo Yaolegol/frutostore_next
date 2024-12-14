@@ -1,5 +1,27 @@
-@import "@/styles/button";
+@import "@/styles/colors";
 
 .index {
-    @include button;
+    align-items: center;
+    background: $white;
+    border: 1px solid $gray;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    width: 60px;
+
+    &.disabled {
+        cursor: default;
+        pointer-events: none;
+    }
+}
+
+.icon {
+    height: 32px;
+    width: 32px;
+
+    .disabled & {
+        color: $gray;
+    }
 }

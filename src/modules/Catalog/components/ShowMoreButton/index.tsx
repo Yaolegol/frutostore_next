@@ -16,10 +16,8 @@ export const ShowMoreButton: FC = () => {
     }
 
     return (
-        <div className={style.index}>
-            <button onClick={handleClick} type="button">
-                Показать еще
-            </button>
-        </div>
+        <button className={style.index} onClick={handleClick} type="button">
+            Показать еще
+        </button>
     );
 };

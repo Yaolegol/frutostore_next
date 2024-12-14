@@ -1,5 +1,8 @@
+@import "@/styles/button";
 @import "@/styles/layout";
 
 .index {
-
+    @include button;
+    
+    width: 100%;
 }
