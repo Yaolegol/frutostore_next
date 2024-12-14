@@ -1,10 +1,11 @@
 import { getServerLangData } from '@/helpers/lang/server';
 import { Catalog } from '@/modules/Catalog';
+import { CatalogProvider } from '@/modules/Catalog/provider';
 import { CatalogService } from '@/modules/Catalog/service';
 import { LangContextProvider } from '@/modules/Lang/provider';
 import { Layout } from '@/modules/Layout/components/Layout';
-import { Metadata, NextPage } from 'next';
-import { CatalogProvider } from '@/modules/Catalog/provider';
+import { INextPageProps } from '@/types';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Fruits store catalog',
@@ -12,10 +13,12 @@ export const metadata: Metadata = {
 
 const catalogService = new CatalogService();
 
-const CatalogPage: NextPage = async () => {
+const CatalogPage = async ({ searchParams }: INextPageProps) => {
+    const { page } = searchParams;
+
     const { defaultLangOption, defaultLangText } = await getServerLangData();
 
-    const data = await catalogService.getProducts();
+    const data = await catalogService.getProducts({ page: page ?? 1 });
 
     return (
         <LangContextProvider
