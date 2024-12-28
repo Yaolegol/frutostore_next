@@ -1,5 +1,6 @@
 'use client';
 
+import { RangeFilterController } from '@/modules/Filters/controllers/RangeFilterController';
 import { Pagination } from '@/modules/pages/Catalog/components/Pagination';
 import { ProductList } from '@/modules/pages/Catalog/components/ProductList';
 import { ShowMoreButton } from '@/modules/pages/Catalog/components/ShowMoreButton';
@@ -11,7 +12,9 @@ export const Catalog: FC = () => {
         <div className={style.index}>
             <h1>Каталог</h1>
             <div className={style.content}>
-                <div></div>
+                <div className={style.filters}>
+                    <RangeFilterController />
+                </div>
                 <div>
                     <ProductList />
                     <div>
