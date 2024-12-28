@@ -4,42 +4,92 @@ import { ChangeEvent, FC, useCallback, useState } from 'react';
 import style from './index.module.scss';
 
 interface IProps {
-    maxPlaceholder: string;
     maxDefaultValue: string;
-    minPlaceholder: string;
+    maxPlaceholder: string;
+    maxRange: number;
     minDefaultValue: string;
+    minPlaceholder: string;
+    minRange: number;
     title: string;
 }
 
 export const RangeFilter: FC<IProps> = ({
-    maxPlaceholder,
     maxDefaultValue,
-    minPlaceholder,
+    maxPlaceholder,
+    maxRange,
     minDefaultValue,
+    minPlaceholder,
+    minRange,
     title,
 }) => {
     const [minValue, setMinValue] = useState(minDefaultValue);
     const [maxValue, setMaxValue] = useState(maxDefaultValue);
 
-    const handleChangeMin = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
+    const handleChangeMin = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            const value = e.target.value;
 
-        if (!isStringOnlyNumbers(value)) {
-            return;
-        }
+            if (!isStringOnlyNumbers(value)) {
+                return;
+            }
 
-        setMinValue(value);
-    }, []);
+            if (value === '') {
+                setMinValue(value);
 
-    const handleChangeMax = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
+                return;
+            }
 
-        if (!isStringOnlyNumbers(value)) {
-            return;
-        }
+            const numberValue = Number(value);
 
-        setMaxValue(value);
-    }, []);
+            if (numberValue > maxRange) {
+                setMinValue(String(maxRange));
+
+                return;
+            }
+
+            if (numberValue < minRange) {
+                setMinValue(String(minRange));
+
+                return;
+            }
+
+            setMinValue(value);
+        },
+        [maxRange, minRange],
+    );
+
+    const handleChangeMax = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            const value = e.target.value;
+
+            if (!isStringOnlyNumbers(value)) {
+                return;
+            }
+
+            if (value === '') {
+                setMaxValue(value);
+
+                return;
+            }
+
+            const numberValue = Number(value);
+
+            if (numberValue > maxRange) {
+                setMaxValue(String(maxRange));
+
+                return;
+            }
+
+            if (numberValue < minRange) {
+                setMaxValue(String(minRange));
+
+                return;
+            }
+
+            setMaxValue(value);
+        },
+        [maxRange, minRange],
+    );
 
     return (
         <div>
