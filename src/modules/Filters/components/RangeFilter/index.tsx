@@ -1,4 +1,5 @@
 import { Input } from '@/components/Input';
+import { isStringOnlyNumbers } from '@/helpers/number/incex';
 import { ChangeEvent, FC, useCallback, useState } from 'react';
 import style from './index.module.scss';
 
@@ -23,9 +24,7 @@ export const RangeFilter: FC<IProps> = ({
     const handleChangeMin = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
 
-        const numberValue = Number(value);
-
-        if (Number.isNaN(numberValue)) {
+        if (!isStringOnlyNumbers(value)) {
             return;
         }
 
@@ -35,9 +34,7 @@ export const RangeFilter: FC<IProps> = ({
     const handleChangeMax = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
 
-        const numberValue = Number(value);
-
-        if (Number.isNaN(numberValue)) {
+        if (!isStringOnlyNumbers(value)) {
             return;
         }
 
