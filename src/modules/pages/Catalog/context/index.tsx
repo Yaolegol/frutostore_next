@@ -1,6 +1,6 @@
 'use client';
 
-import { ICatalogProduct } from '@/modules/Catalog/types';
+import { ICatalogProduct } from '@/modules/pages/Catalog/types';
 import { createContext } from 'react';
 
 export interface ICatalogContext {

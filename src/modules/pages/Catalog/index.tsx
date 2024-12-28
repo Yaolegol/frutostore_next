@@ -1,8 +1,8 @@
 'use client';
 
-import { Pagination } from '@/modules/Catalog/components/Pagination';
-import { ProductList } from '@/modules/Catalog/components/ProductList';
-import { ShowMoreButton } from '@/modules/Catalog/components/ShowMoreButton';
+import { Pagination } from '@/modules/pages/Catalog/components/Pagination';
+import { ProductList } from '@/modules/pages/Catalog/components/ProductList';
+import { ShowMoreButton } from '@/modules/pages/Catalog/components/ShowMoreButton';
 import { FC } from 'react';
 import style from './index.module.scss';
 

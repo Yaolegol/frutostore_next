@@ -1,7 +1,7 @@
 import { getServerLangData } from '@/helpers/lang/server';
-import { Catalog } from '@/modules/Catalog';
-import { CatalogProvider } from '@/modules/Catalog/provider';
-import { CatalogService } from '@/modules/Catalog/service';
+import { Catalog } from '../../modules/pages/Catalog';
+import { CatalogProvider } from '@/modules/pages/Catalog/provider';
+import { CatalogService } from '@/modules/pages/Catalog/service';
 import { LangContextProvider } from '@/modules/Lang/provider';
 import { Layout } from '@/modules/Layout/components/Layout';
 import { INextPageProps } from '@/types';

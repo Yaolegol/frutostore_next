@@ -1,8 +1,8 @@
 'use client';
 
-import { Slide } from '@/modules/Home/components/Slider/Slide';
-import { SliderNextButton } from '@/modules/Home/components/Slider/SliderNextButton';
-import { SliderPrevButton } from '@/modules/Home/components/Slider/SliderPrevButton';
+import { Slide } from '@/modules/pages/Home/components/Slider/Slide';
+import { SliderNextButton } from '@/modules/pages/Home/components/Slider/SliderNextButton';
+import { SliderPrevButton } from '@/modules/pages/Home/components/Slider/SliderPrevButton';
 import { FC, useState } from 'react';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 import 'swiper/css';

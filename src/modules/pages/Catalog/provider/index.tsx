@@ -1,8 +1,8 @@
 'use client';
 
-import { CatalogContext } from '@/modules/Catalog/context';
-import { CatalogService } from '@/modules/Catalog/service';
-import { ICatalogData } from '@/modules/Catalog/types';
+import { CatalogContext } from '@/modules/pages/Catalog/context';
+import { CatalogService } from '@/modules/pages/Catalog/service';
+import { ICatalogData } from '@/modules/pages/Catalog/types';
 import { scrollToTop } from '@/helpers/scroll';
 import {
     FC,

@@ -1,7 +1,7 @@
 'use client';
 
 import { IOption, Select } from '@/components/Select';
-import { HomePageContext } from '@/modules/Home/context';
+import { HomePageContext } from '@/modules/pages/Home/context';
 import { LANG_OPTIONS } from '@/modules/Lang/constants';
 import { FC, useCallback, useContext } from 'react';
 import style from './index.module.scss';

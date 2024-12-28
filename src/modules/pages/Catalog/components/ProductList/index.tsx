@@ -1,6 +1,6 @@
 'use client';
 
-import { CatalogContext } from '@/modules/Catalog/context';
+import { CatalogContext } from '@/modules/pages/Catalog/context';
 import { ProductCard } from '@/modules/ProductCard';
 import { FC, useContext } from 'react';
 import style from './index.module.scss';

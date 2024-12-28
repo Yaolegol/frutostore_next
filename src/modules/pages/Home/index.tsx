@@ -1,5 +1,5 @@
 import { LinkButton } from '@/components/LinkButton';
-import { Slider } from '@/modules/Home/components/Slider';
+import { Slider } from '@/modules/pages/Home/components/Slider';
 import { FC } from 'react';
 import style from './index.module.scss';
 

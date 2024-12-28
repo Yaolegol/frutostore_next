@@ -1,4 +1,4 @@
-import { ICatalogData, IQueryParams } from '@/modules/Catalog/types';
+import { ICatalogData, IQueryParams } from '@/modules/pages/Catalog/types';
 import { ApiService } from '@/service';
 
 const CATALOG_ROOT_PATH = '/catalog';

@@ -1,4 +1,4 @@
-import { HomePageContext } from '@/modules/Home/context';
+import { HomePageContext } from '@/modules/pages/Home/context';
 import { getMessage } from '@/modules/Lang/helpers';
 import { FC, useContext, useMemo } from 'react';
 
