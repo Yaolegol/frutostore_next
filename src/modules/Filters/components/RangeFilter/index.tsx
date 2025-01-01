@@ -1,7 +1,18 @@
 import { Input } from '@/components/Input';
 import { isStringOnlyNumbers } from '@/helpers/number/incex';
-import { ChangeEvent, FocusEvent, FC, useCallback, useState } from 'react';
+import {
+    ChangeEvent,
+    FocusEvent,
+    FC,
+    useCallback,
+    useState,
+    useMemo,
+} from 'react';
 import style from './index.module.scss';
+import { debounce } from '@/helpers/debounce';
+
+type value = number | undefined;
+export type TRangeFilterValue = [value, value];
 
 interface IProps {
     maxDefaultValue: string;
@@ -10,6 +21,7 @@ interface IProps {
     minDefaultValue: string;
     minPlaceholder: string;
     minRange: number;
+    onApply: (value: TRangeFilterValue) => void;
     title: string;
 }
 
@@ -20,59 +32,88 @@ export const RangeFilter: FC<IProps> = ({
     minDefaultValue,
     minPlaceholder,
     minRange,
+    onApply,
     title,
 }) => {
     const [minValue, setMinValue] = useState(minDefaultValue);
     const [maxValue, setMaxValue] = useState(maxDefaultValue);
 
-    const handleBlurMin = useCallback(
-        (e: FocusEvent<HTMLInputElement>) => {
-            const value = e.target.value;
+    const normalizeValue = useCallback(
+        (value: string) => {
+            if (!value) {
+                return undefined;
+            }
 
+            const numberValue = Number(value);
+
+            if (numberValue < minRange) {
+                return minRange;
+            }
+
+            return numberValue;
+        },
+        [minRange],
+    );
+
+    const handleApply = useMemo(() => {
+        return debounce<TRangeFilterValue>(onApply, 1000);
+    }, [onApply]);
+
+    const applyFilterMin = useCallback(
+        (value: string) => {
+            const min = normalizeValue(value);
+            const max = normalizeValue(maxValue);
+
+            handleApply([min, max]);
+        },
+        [handleApply, maxValue, normalizeValue],
+    );
+
+    const applyFilterMax = useCallback(
+        (value: string) => {
+            const min = normalizeValue(minValue);
+            const max = normalizeValue(value);
+
+            handleApply([min, max]);
+        },
+        [handleApply, minValue, normalizeValue],
+    );
+
+    const checkMinRange = useCallback(
+        (value: string) => {
             if (value === '') {
                 return;
             }
 
             const numberValue = Number(value);
 
-            if (numberValue > maxRange) {
-                setMinValue(String(maxRange));
-
-                return;
-            }
-
             if (numberValue < minRange) {
-                setMinValue(String(minRange));
-
-                return;
+                return String(minRange);
             }
         },
-        [maxRange, minRange],
+        [minRange],
+    );
+
+    const handleBlurMin = useCallback(
+        (e: FocusEvent<HTMLInputElement>) => {
+            const newValue = checkMinRange(e.target.value);
+
+            if (newValue) {
+                setMinValue(newValue);
+            }
+        },
+        [checkMinRange],
     );
 
     const handleBlurMax = useCallback(
         (e: FocusEvent<HTMLInputElement>) => {
-            const value = e.target.value;
+            const newValue = checkMinRange(e.target.value);
 
-            if (value === '') {
-                return;
-            }
-
-            const numberValue = Number(value);
-
-            if (numberValue > maxRange) {
-                setMaxValue(String(maxRange));
-
-                return;
-            }
-
-            if (numberValue < minRange) {
-                setMaxValue(String(minRange));
-
-                return;
+            if (newValue) {
+                setMaxValue(newValue);
             }
         },
-        [maxRange, minRange],
+        [checkMinRange],
     );
 
     const handleChangeMin = useCallback(
@@ -81,6 +122,7 @@ export const RangeFilter: FC<IProps> = ({
 
             if (value === '') {
                 setMinValue(value);
+                applyFilterMin(value);
 
                 return;
             }
@@ -92,14 +134,18 @@ export const RangeFilter: FC<IProps> = ({
             const numberValue = Number(value);
 
             if (numberValue > maxRange) {
-                setMinValue(String(maxRange));
+                const newValue = String(maxRange);
+
+                setMinValue(newValue);
+                applyFilterMin(newValue);
 
                 return;
             }
 
             setMinValue(value);
+            applyFilterMin(value);
         },
-        [maxRange],
+        [applyFilterMin, maxRange],
     );
 
     const handleChangeMax = useCallback(
@@ -108,6 +154,7 @@ export const RangeFilter: FC<IProps> = ({
 
             if (value === '') {
                 setMaxValue(value);
+                applyFilterMax(value);
 
                 return;
             }
@@ -119,14 +166,18 @@ export const RangeFilter: FC<IProps> = ({
             const numberValue = Number(value);
 
             if (numberValue > maxRange) {
-                setMaxValue(String(maxRange));
+                const newValue = String(maxRange);
+
+                setMaxValue(newValue);
+                applyFilterMax(newValue);
 
                 return;
             }
 
             setMaxValue(value);
+            applyFilterMax(value);
         },
-        [maxRange],
+        [applyFilterMax, maxRange],
     );
 
     return (
