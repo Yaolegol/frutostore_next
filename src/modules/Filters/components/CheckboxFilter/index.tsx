@@ -26,7 +26,7 @@ export const CheckboxFilter: FC<IProps> = ({ onChange, options, title }) => {
             <div className={style.options}>
                 {options.map(({ isDefaultChecked, text, valueCode }) => {
                     return (
-                        <div className={style.option} key={text}>
+                        <div className={style.option} key={valueCode}>
                             <Checkbox
                                 isDefaultChecked={isDefaultChecked}
                                 onChange={handleChange(valueCode)}

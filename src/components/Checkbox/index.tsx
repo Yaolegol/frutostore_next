@@ -1,4 +1,5 @@
 import { Icon } from '@/components/Icon';
+import { styles } from '@/helpers/styles';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import style from './index.module.scss';
 
@@ -27,7 +28,7 @@ export const Checkbox: FC<IProps> = ({ isDefaultChecked, onChange, text }) => {
     };
 
     return (
-        <label className={style.index}>
+        <label className={styles(style.index, checked ? style.checked : '')}>
             <input
                 checked={checked}
                 className={style.input}
