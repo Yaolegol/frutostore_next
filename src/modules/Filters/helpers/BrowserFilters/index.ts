@@ -33,11 +33,12 @@ export class BrowserFilters {
 
     private addFilter = (key: string, value: string) => {
         const currentFilter = this.getCurrentFilter(key);
+        const newValues = [value];
 
         if (!currentFilter) {
             this.filters.push({
                 key,
-                values: [value],
+                values: newValues,
             });
 
             return;
@@ -49,7 +50,7 @@ export class BrowserFilters {
             return;
         }
 
-        currentFilter.values.push(value);
+        currentFilter.values = newValues;
     };
 
     private addRangeFilter = (key: string, values: TRangeFilterValue) => {
@@ -154,9 +155,6 @@ export class BrowserFilters {
 
     updateFilters = () => {
         const { filters } = new FiltersFromUrl();
-
-        console.log('filters');
-        console.log(filters);
 
         this.filters = filters;
     };
