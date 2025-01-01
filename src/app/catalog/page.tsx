@@ -15,11 +15,14 @@ export const metadata: Metadata = {
 const catalogService = new CatalogService();
 
 const CatalogPage = async ({ searchParams }: INextPageProps) => {
-    const { page } = searchParams;
+    const { filters, page } = searchParams;
 
     const { defaultLangOption, defaultLangText } = await getServerLangData();
 
-    const data = await catalogService.getProducts({ page: page ?? 1 });
+    const data = await catalogService.getProducts({
+        filters,
+        page: page ?? '1',
+    });
 
     return (
         <LangContextProvider

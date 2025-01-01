@@ -14,6 +14,12 @@ import {
     useEffect,
 } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { URL_FILTERS_KEY } from '@/modules/Filters/constants';
+
+interface IGetData {
+    filters: string;
+    page: string;
+}
 
 interface IProps {
     children: ReactNode;
@@ -39,8 +45,8 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
     }, [searchParams]);
 
     const getData = useCallback(
-        async (newPage: number) => {
-            const newData = await catalogService.getProducts({ page: newPage });
+        async ({ filters, page }: IGetData) => {
+            const newData = await catalogService.getProducts({ filters, page });
 
             if (!newData) {
                 return;
@@ -70,10 +76,11 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
             return;
         }
 
-        const page = getPage();
+        const page = String(getPage());
+        const filters = searchParams.get(URL_FILTERS_KEY) ?? '';
 
         setCurrentSearchParams(searchParams);
-        getData(page);
+        getData({ filters, page });
     }, [currentSearchParams, getData, getPage, searchParams]);
 
     const setPaginationQuery = useCallback(

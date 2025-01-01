@@ -10,8 +10,8 @@ export class CatalogService {
         const searchParams = new URLSearchParams();
 
         Object.entries(params).forEach(([key, value]) => {
-            if (value === '') {
-                searchParams.delete(key, value);
+            if (!value) {
+                searchParams.delete(key);
 
                 return;
             }

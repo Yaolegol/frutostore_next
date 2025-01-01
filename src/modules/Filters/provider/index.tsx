@@ -2,7 +2,7 @@
 
 import { FiltersContext } from '@/modules/Filters/context';
 import { BrowserFilters } from '@/modules/Filters/helpers/BrowserFilters';
-import { FC, ReactNode, useEffect, useMemo } from 'react';
+import { FC, ReactNode, useCallback, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 interface IProps {
