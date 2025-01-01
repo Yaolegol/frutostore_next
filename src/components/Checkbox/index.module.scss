@@ -1,0 +1,25 @@
+@import "@/styles/colors";
+
+.index {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: 8px;
+    position: relative;
+    width: fit-content;
+}
+
+.checkmarkContainer {
+    border: 1px solid $gray;
+    border-radius: 8px;
+    height: 24px;
+    width: 24px;
+}
+
+.input {
+    height: 0;
+    opacity: 0;
+    outline: none;
+    position: absolute;
+    width: 0;
+}

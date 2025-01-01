@@ -1,0 +1,11 @@
+.index {
+    display: inline-block;
+}
+
+.image {
+    display: block;
+    border-radius: 50%;
+    height: 60px;
+    object-fit: contain;
+    width: 60px;
+}
