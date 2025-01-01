@@ -10,10 +10,23 @@
 }
 
 .checkmarkContainer {
+    align-items: center;
     border: 1px solid $gray;
     border-radius: 8px;
+    display: flex;
     height: 24px;
+    justify-content: center;
     width: 24px;
+}
+
+.checkmarkIcon {
+    display: none;
+    width: 16px;
+    height: 16px;
+    
+    .input:checked ~ .checkmarkContainer & {
+        display: block;
+    }
 }
 
 .input {
