@@ -30,7 +30,7 @@ export class FiltersFromUrl {
         this.setFilters();
     };
 
-    setFilters = () => {
+    private setFilters = () => {
         const filtersList = this.filtersQuery?.split(URL_FILTERS_SEPARATOR);
 
         if (!filtersList) {
