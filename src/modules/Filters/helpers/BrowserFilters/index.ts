@@ -8,6 +8,7 @@ import {
 } from '@/modules/Filters/constants';
 import { FiltersFromUrl } from '@/modules/Filters/helpers/FiltersFromUrl';
 import { IFilter } from '@/modules/Filters/types';
+import { PAGE_QUERY_NAME } from '@/modules/pages/Catalog/constants';
 
 export class BrowserFilters {
     private constructor() {
@@ -114,6 +115,8 @@ export class BrowserFilters {
     private getURl = () => {
         const query = this.getFiltersQuery();
         const urlSP = this.getNonFiltersQuery();
+
+        urlSP.delete(PAGE_QUERY_NAME);
 
         if (query) {
             urlSP.append(URL_FILTERS_KEY, query);
