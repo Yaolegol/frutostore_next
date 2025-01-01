@@ -5,3 +5,7 @@ export const URL_FILTERS_KEY = 'filters';
 export const URL_FILTERS_SEPARATOR = ';';
 export const URL_FILTER_KEY_VALUES_SEPARATOR = '-';
 export const URL_FILTER_VALUES_SEPARATOR = '_';
+
+export enum FILTERS_KEYS {
+    PRICE = 'price',
+}

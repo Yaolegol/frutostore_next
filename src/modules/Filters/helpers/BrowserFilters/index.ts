@@ -5,6 +5,8 @@ import {
     URL_FILTERS_KEY,
     URL_FILTERS_SEPARATOR,
 } from '@/modules/Filters/constants';
+import { TRangeFilterValue } from '@/modules/Filters/components/RangeFilter';
+import { isBrowser } from '@/helpers/browser';
 
 interface IFilter {
     key: string;
@@ -12,21 +14,40 @@ interface IFilter {
 }
 
 export class BrowserFilters {
-    constructor() {
+    private constructor() {
+        if (!isBrowser()) {
+            return;
+        }
+
         this.init();
     }
 
+    static instance: BrowserFilters | null = null;
+
     filters: IFilter[] = [];
 
-    private addRangeFilter = (key: string, values: string[]) => {
+    static getInstance = () => {
+        if (!BrowserFilters.instance) {
+            BrowserFilters.instance = new BrowserFilters();
+        }
+
+        return BrowserFilters.instance;
+    };
+
+    private addRangeFilter = (key: string, values: TRangeFilterValue) => {
         const [min, max] = values;
-        const isFilterWithValues = Boolean(min) && Boolean(max);
+        const isFilterWithValues = Boolean(min) || Boolean(max);
+        const stringValues = [String(min), String(max)];
         const currentFilter = this.filters.find((filter) => filter.key === key);
 
         if (!currentFilter) {
+            if (!isFilterWithValues) {
+                return;
+            }
+
             this.filters.push({
                 key,
-                values,
+                values: stringValues,
             });
 
             return;
@@ -38,7 +59,7 @@ export class BrowserFilters {
             return;
         }
 
-        currentFilter.values = values;
+        currentFilter.values = stringValues;
     };
 
     private getFiltersQuery = () => {
@@ -62,7 +83,7 @@ export class BrowserFilters {
         return queryArray.join(URL_FILTERS_SEPARATOR);
     };
 
-    getNonFiltersQuery = () => {
+    private getNonFiltersQuery = () => {
         const urlSP = new URLSearchParams(window.location.search);
         urlSP.delete(URL_FILTERS_KEY);
 
@@ -90,10 +111,13 @@ export class BrowserFilters {
     private init = () => {
         const { filters } = new FiltersFromUrl();
 
+        console.log('filters');
+        console.log(filters);
+
         this.filters = filters;
     };
 
-    userAddRangeFilter = (key: string, values: string[]) => {
+    userAddRangeFilter = (key: string, values: TRangeFilterValue) => {
         this.addRangeFilter(key, values);
 
         return this.getURl();

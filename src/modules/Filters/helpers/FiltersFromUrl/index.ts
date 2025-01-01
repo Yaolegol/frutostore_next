@@ -4,6 +4,7 @@ import {
     URL_FILTERS_KEY,
     URL_FILTERS_SEPARATOR,
 } from '@/modules/Filters/constants';
+import { isBrowser } from '@/helpers/browser';
 
 interface IFilter {
     key: string;
@@ -12,6 +13,10 @@ interface IFilter {
 
 export class FiltersFromUrl {
     constructor() {
+        if (!isBrowser()) {
+            return;
+        }
+
         this.init();
     }
 

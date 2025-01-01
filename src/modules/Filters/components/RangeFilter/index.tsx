@@ -7,6 +7,7 @@ import {
     useCallback,
     useState,
     useMemo,
+    useEffect,
 } from 'react';
 import style from './index.module.scss';
 import { debounce } from '@/helpers/debounce';
@@ -35,8 +36,28 @@ export const RangeFilter: FC<IProps> = ({
     onApply,
     title,
 }) => {
+    const [minDefault, setMinDefault] = useState(minDefaultValue);
     const [minValue, setMinValue] = useState(minDefaultValue);
+    const [maxDefault, setMaxDefault] = useState(maxDefaultValue);
     const [maxValue, setMaxValue] = useState(maxDefaultValue);
+
+    useEffect(() => {
+        if (minDefault === minDefaultValue) {
+            return;
+        }
+
+        setMinDefault(minDefaultValue);
+        setMinValue(minDefaultValue);
+    }, [minDefault, minDefaultValue]);
+
+    useEffect(() => {
+        if (maxDefault === maxDefaultValue) {
+            return;
+        }
+
+        setMaxDefault(maxDefaultValue);
+        setMaxValue(maxDefaultValue);
+    }, [maxDefault, maxDefaultValue]);
 
     const normalizeValue = useCallback(
         (value: string) => {
