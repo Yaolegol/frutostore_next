@@ -1,14 +1,14 @@
-import { Checkbox } from '@/components/Checkbox';
+import { CheckboxFilterController } from '@/modules/Filters/controllers/CheckboxFilterController';
 import { RangeFilterController } from '@/modules/Filters/controllers/RangeFilterController';
 import { FC } from 'react';
 import style from './index.module.scss';
 
 export const Filters: FC = () => {
     return (
-        <div className={style.index}>
+        <div>
             <RangeFilterController />
-            <div>
-                <Checkbox text="test" />
+            <div className={style.container}>
+                <CheckboxFilterController />
             </div>
         </div>
     );

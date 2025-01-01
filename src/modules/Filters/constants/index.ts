@@ -8,4 +8,18 @@ export const URL_FILTER_VALUES_SEPARATOR = '_';
 
 export enum FILTERS_KEYS {
     PRICE = 'price',
+    TYPE = 'type',
 }
+
+export const TYPE_FILTER_OPTIONS = [
+    {
+        isDefaultChecked: false,
+        text: 'Фрукты',
+        valueCode: 'fruit',
+    },
+    {
+        isDefaultChecked: false,
+        text: 'Ягоды',
+        valueCode: 'berry',
+    },
+];

@@ -1,20 +1,37 @@
 import { Icon } from '@/components/Icon';
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 import style from './index.module.scss';
 
 interface IProps {
-    isChecked?: boolean;
+    isDefaultChecked?: boolean;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     text: string;
 }
 
-export const Checkbox: FC<IProps> = ({ isChecked, onChange, text }) => {
+export const Checkbox: FC<IProps> = ({ isDefaultChecked, onChange, text }) => {
+    const [defaultChecked, setDefaultChecked] = useState(isDefaultChecked);
+    const [checked, setChecked] = useState(isDefaultChecked);
+
+    useEffect(() => {
+        if (isDefaultChecked === defaultChecked) {
+            return;
+        }
+
+        setDefaultChecked(isDefaultChecked);
+        setChecked(isDefaultChecked);
+    }, [defaultChecked, isDefaultChecked]);
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setChecked((isChecked) => !isChecked);
+        onChange(e);
+    };
+
     return (
         <label className={style.index}>
             <input
-                checked={isChecked}
+                checked={checked}
                 className={style.input}
-                onChange={onChange}
+                onChange={handleChange}
                 type="checkbox"
             />
             <div className={style.checkmarkContainer}>
