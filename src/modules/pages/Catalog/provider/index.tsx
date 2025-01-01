@@ -1,5 +1,6 @@
 'use client';
 
+import { PAGE_QUERY_NAME } from '@/modules/pages/Catalog/constants';
 import { CatalogContext } from '@/modules/pages/Catalog/context';
 import { CatalogService } from '@/modules/pages/Catalog/service';
 import { ICatalogData } from '@/modules/pages/Catalog/types';
@@ -32,7 +33,7 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
     const [data, setData] = useState<ICatalogData | null>(defaultData);
 
     const getPage = useCallback(() => {
-        const page = searchParams.get('page') ?? 1;
+        const page = searchParams.get(PAGE_QUERY_NAME) ?? 1;
 
         return Number(page);
     }, [searchParams]);
@@ -78,10 +79,10 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
     const setPaginationQuery = useCallback(
         (newPage: number) => {
             const urlSP = new URLSearchParams(window.location.search);
-            urlSP.delete('page');
+            urlSP.delete(PAGE_QUERY_NAME);
 
             if (newPage !== 1) {
-                urlSP.append('page', String(newPage));
+                urlSP.append(PAGE_QUERY_NAME, String(newPage));
             }
 
             const queryParams = urlSP.toString();
