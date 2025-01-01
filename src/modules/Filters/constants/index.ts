@@ -7,8 +7,8 @@ export const URL_FILTER_KEY_VALUES_SEPARATOR = '-';
 export const URL_FILTER_VALUES_SEPARATOR = '_';
 
 export enum FILTERS_KEYS {
+    CATEGORY = 'category',
     PRICE = 'price',
-    TYPE = 'type',
 }
 
 export const TYPE_FILTER_OPTIONS = [

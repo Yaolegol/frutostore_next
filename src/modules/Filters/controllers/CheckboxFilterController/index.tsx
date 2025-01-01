@@ -5,7 +5,7 @@ import { BrowserFilters } from '@/modules/Filters/helpers/BrowserFilters';
 import { useCallback, useContext, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 
-const { TYPE } = FILTERS_KEYS;
+const { CATEGORY } = FILTERS_KEYS;
 
 export const CheckboxFilterController = () => {
     const { filters } = useContext(FiltersContext);
@@ -14,7 +14,7 @@ export const CheckboxFilterController = () => {
     const handleApply = useCallback(
         (value: string) => {
             const browserFilters = BrowserFilters.getInstance();
-            const url = browserFilters.userAddFilter(TYPE, value);
+            const url = browserFilters.userAddFilter(CATEGORY, value);
 
             router.push(url);
         },
@@ -24,7 +24,7 @@ export const CheckboxFilterController = () => {
     const handleDiscard = useCallback(
         (value: string) => {
             const browserFilters = BrowserFilters.getInstance();
-            const url = browserFilters.userRemoveFilter(TYPE, value);
+            const url = browserFilters.userRemoveFilter(CATEGORY, value);
 
             router.push(url);
         },
@@ -45,7 +45,7 @@ export const CheckboxFilterController = () => {
     );
 
     const options = useMemo(() => {
-        const currentFilter = filters.find(({ key }) => key === TYPE);
+        const currentFilter = filters.find(({ key }) => key === CATEGORY);
 
         if (!currentFilter) {
             return TYPE_FILTER_OPTIONS;
@@ -65,7 +65,7 @@ export const CheckboxFilterController = () => {
 
     return (
         <CheckboxFilter
-            code={TYPE}
+            code={CATEGORY}
             onChange={handleChange}
             options={options}
             title="Категория"
