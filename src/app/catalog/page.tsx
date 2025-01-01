@@ -6,6 +6,7 @@ import { LangContextProvider } from '@/modules/Lang/provider';
 import { Layout } from '@/modules/Layout/components/Layout';
 import { INextPageProps } from '@/types';
 import { Metadata } from 'next';
+import { FiltersProvider } from '@/modules/Filters/provider';
 
 export const metadata: Metadata = {
     title: 'Fruits store catalog',
@@ -27,7 +28,9 @@ const CatalogPage = async ({ searchParams }: INextPageProps) => {
         >
             <Layout>
                 <CatalogProvider defaultData={data}>
-                    <Catalog />
+                    <FiltersProvider>
+                        <Catalog />
+                    </FiltersProvider>
                 </CatalogProvider>
             </Layout>
         </LangContextProvider>

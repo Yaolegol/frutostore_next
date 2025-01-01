@@ -1,15 +1,11 @@
+import { isBrowser } from '@/helpers/browser';
 import {
     URL_FILTER_KEY_VALUES_SEPARATOR,
     URL_FILTER_VALUES_SEPARATOR,
     URL_FILTERS_KEY,
     URL_FILTERS_SEPARATOR,
 } from '@/modules/Filters/constants';
-import { isBrowser } from '@/helpers/browser';
-
-interface IFilter {
-    key: string;
-    values: string[];
-}
+import { IFilter } from '@/modules/Filters/types';
 
 export class FiltersFromUrl {
     constructor() {

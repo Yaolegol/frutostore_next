@@ -1,17 +1,13 @@
-import { FiltersFromUrl } from '@/modules/Filters/helpers/FiltersFromUrl';
+import { isBrowser } from '@/helpers/browser';
+import { TRangeFilterValue } from '@/modules/Filters/components/RangeFilter';
 import {
     URL_FILTER_KEY_VALUES_SEPARATOR,
     URL_FILTER_VALUES_SEPARATOR,
     URL_FILTERS_KEY,
     URL_FILTERS_SEPARATOR,
 } from '@/modules/Filters/constants';
-import { TRangeFilterValue } from '@/modules/Filters/components/RangeFilter';
-import { isBrowser } from '@/helpers/browser';
-
-interface IFilter {
-    key: string;
-    values: string[];
-}
+import { FiltersFromUrl } from '@/modules/Filters/helpers/FiltersFromUrl';
+import { IFilter } from '@/modules/Filters/types';
 
 export class BrowserFilters {
     private constructor() {
@@ -109,6 +105,10 @@ export class BrowserFilters {
     };
 
     private init = () => {
+        this.updateFilters();
+    };
+
+    updateFilters = () => {
         const { filters } = new FiltersFromUrl();
 
         console.log('filters');

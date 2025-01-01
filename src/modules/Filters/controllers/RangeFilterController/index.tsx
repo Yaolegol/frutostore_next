@@ -7,32 +7,29 @@ import {
     MAX_PRICE,
     MIN_PRICE,
 } from '@/modules/Filters/constants';
-import { useCallback, useMemo } from 'react';
-import { BrowserFilters } from '@/modules/Filters/helpers/BrowserFilters';
-import { useRouter } from 'next/navigation';
+import { FiltersContext } from '@/modules/Filters/context';
 import { getFormattedRangeValueFromUrl } from '@/modules/Filters/helpers';
+import { BrowserFilters } from '@/modules/Filters/helpers/BrowserFilters';
+import { useCallback, useContext, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 
 const { PRICE } = FILTERS_KEYS;
 
 export const RangeFilterController = () => {
+    const { filters } = useContext(FiltersContext);
     const router = useRouter();
-
-    const browserFilters = useMemo(() => {
-        return BrowserFilters.getInstance();
-    }, []);
 
     const handleApply = useCallback(
         (value: TRangeFilterValue) => {
+            const browserFilters = BrowserFilters.getInstance();
             const url = browserFilters.userAddRangeFilter(PRICE, value);
 
             router.push(url);
         },
-        [browserFilters, router],
+        [router],
     );
 
     const [defaultMin, defaultMax] = useMemo(() => {
-        const filters = browserFilters.filters;
-
         const priceFilter = filters.find(({ key }) => {
             return key === PRICE;
         });
@@ -47,7 +44,7 @@ export const RangeFilterController = () => {
         const maxFormatted = getFormattedRangeValueFromUrl(max);
 
         return [minFormatted, maxFormatted];
-    }, [browserFilters]);
+    }, [filters]);
 
     return (
         <RangeFilter
