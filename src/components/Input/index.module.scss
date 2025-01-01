@@ -1,8 +1,14 @@
 @import '/src/styles/colors';
+@import '/src/styles/transition';
 
 .index {
     border: 1px solid $gray;
     border-radius: 12px;
     padding: 20px;
+    transition: all $transitionDefault;
     width: 100%;
+    
+    &:hover {
+        border-color: $gray-90;
+    }
 }

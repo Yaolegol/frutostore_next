@@ -4,3 +4,16 @@
     gap: 10px;
     margin-top: 15px;
 }
+
+.option {
+    margin-top: 10px;
+    
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.options {
+    margin-top: 15px;
+}
+

@@ -1,4 +1,5 @@
 @import "@/styles/colors";
+@import "@/styles/transition";
 
 .index {
     align-items: center;
@@ -16,7 +17,12 @@
     display: flex;
     height: 24px;
     justify-content: center;
+    transition: all $transitionDefault;
     width: 24px;
+    
+    .index:hover & {
+        border-color: $gray-90;
+    }
 }
 
 .checkmarkIcon {
