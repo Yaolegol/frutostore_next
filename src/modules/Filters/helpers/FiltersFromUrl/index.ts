@@ -10,7 +10,7 @@ interface IFilter {
     values: string[];
 }
 
-export class UrlFiltersController {
+export class FiltersFromUrl {
     constructor() {
         this.init();
     }
