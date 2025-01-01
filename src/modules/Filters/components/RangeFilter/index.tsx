@@ -1,6 +1,6 @@
 import { Input } from '@/components/Input';
 import { isStringOnlyNumbers } from '@/helpers/number/incex';
-import { ChangeEvent, FC, useCallback, useState } from 'react';
+import { ChangeEvent, FocusEvent, FC, useCallback, useState } from 'react';
 import style from './index.module.scss';
 
 interface IProps {
@@ -25,17 +25,11 @@ export const RangeFilter: FC<IProps> = ({
     const [minValue, setMinValue] = useState(minDefaultValue);
     const [maxValue, setMaxValue] = useState(maxDefaultValue);
 
-    const handleChangeMin = useCallback(
-        (e: ChangeEvent<HTMLInputElement>) => {
+    const handleBlurMin = useCallback(
+        (e: FocusEvent<HTMLInputElement>) => {
             const value = e.target.value;
 
-            if (!isStringOnlyNumbers(value)) {
-                return;
-            }
-
             if (value === '') {
-                setMinValue(value);
-
                 return;
             }
 
@@ -52,23 +46,15 @@ export const RangeFilter: FC<IProps> = ({
 
                 return;
             }
-
-            setMinValue(value);
         },
         [maxRange, minRange],
     );
 
-    const handleChangeMax = useCallback(
-        (e: ChangeEvent<HTMLInputElement>) => {
+    const handleBlurMax = useCallback(
+        (e: FocusEvent<HTMLInputElement>) => {
             const value = e.target.value;
 
-            if (!isStringOnlyNumbers(value)) {
-                return;
-            }
-
             if (value === '') {
-                setMaxValue(value);
-
                 return;
             }
 
@@ -85,10 +71,62 @@ export const RangeFilter: FC<IProps> = ({
 
                 return;
             }
+        },
+        [maxRange, minRange],
+    );
+
+    const handleChangeMin = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            const value = e.target.value;
+
+            if (value === '') {
+                setMinValue(value);
+
+                return;
+            }
+
+            if (!isStringOnlyNumbers(value)) {
+                return;
+            }
+
+            const numberValue = Number(value);
+
+            if (numberValue > maxRange) {
+                setMinValue(String(maxRange));
+
+                return;
+            }
+
+            setMinValue(value);
+        },
+        [maxRange],
+    );
+
+    const handleChangeMax = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            const value = e.target.value;
+
+            if (value === '') {
+                setMaxValue(value);
+
+                return;
+            }
+
+            if (!isStringOnlyNumbers(value)) {
+                return;
+            }
+
+            const numberValue = Number(value);
+
+            if (numberValue > maxRange) {
+                setMaxValue(String(maxRange));
+
+                return;
+            }
 
             setMaxValue(value);
         },
-        [maxRange, minRange],
+        [maxRange],
     );
 
     return (
@@ -96,12 +134,14 @@ export const RangeFilter: FC<IProps> = ({
             <div>{title}</div>
             <div className={style.inputs}>
                 <Input
+                    onBlur={handleBlurMin}
                     onChange={handleChangeMin}
                     placeholder={minPlaceholder}
                     value={minValue}
                 />
                 <span>-</span>
                 <Input
+                    onBlur={handleBlurMax}
                     onChange={handleChangeMax}
                     placeholder={maxPlaceholder}
                     value={maxValue}
