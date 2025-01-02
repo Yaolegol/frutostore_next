@@ -1,28 +1,35 @@
 'use client';
 
 import { styles } from '@/helpers/styles';
-import { ChangeEvent, FC, useState } from 'react';
+import { CartContext } from '@/modules/Cart/context';
+import { FC, useContext, useMemo } from 'react';
 import style from './index.module.scss';
 
-export const Counter: FC = () => {
-    const [value, setValue] = useState('');
+interface IProps {
+    id: number;
+}
+
+export const Counter: FC<IProps> = ({ id }) => {
+    const { cart } = useContext(CartContext);
+    const { decrementProductInCard, incrementProductInCard } =
+        useContext(CartContext);
+
+    const value = useMemo(() => {
+        const product = cart.find((item) => item.id === id);
+
+        if (!product) {
+            return '1';
+        }
+
+        return String(product.quantity);
+    }, [cart, id]);
 
     const handleDecrement = () => {
-        const val = Number(value) - 1;
-
-        setValue(String(val));
+        decrementProductInCard?.(id);
     };
 
     const handleIncrement = () => {
-        const val = Number(value) + 1;
-
-        setValue(String(val));
-    };
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const val = e.target.value;
-
-        setValue(val);
+        incrementProductInCard?.(id);
     };
 
     return (
@@ -34,12 +41,7 @@ export const Counter: FC = () => {
             >
                 -
             </button>
-            <input
-                className={style.input}
-                onChange={handleChange}
-                type="text"
-                value={value}
-            />
+            <input className={style.input} type="text" value={value} />
             <button
                 className={styles(style.button, style.buttonRight)}
                 onClick={handleIncrement}

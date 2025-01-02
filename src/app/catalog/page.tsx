@@ -1,4 +1,5 @@
 import { getServerLangData } from '@/helpers/lang/server';
+import { CartProvider } from '@/modules/Cart/provider';
 import { FiltersProvider } from '@/modules/Filters/provider';
 import { LangContextProvider } from '@/modules/Lang/provider';
 import { Layout } from '@/modules/Layout/components/Layout';
@@ -30,13 +31,15 @@ const CatalogPage = async ({ searchParams }: INextPageProps) => {
             defaultLangOption={defaultLangOption}
             defaultLangText={defaultLangText}
         >
-            <Layout>
-                <CatalogProvider defaultData={data}>
-                    <FiltersProvider>
-                        <Catalog />
-                    </FiltersProvider>
-                </CatalogProvider>
-            </Layout>
+            <CartProvider>
+                <Layout>
+                    <CatalogProvider defaultData={data}>
+                        <FiltersProvider>
+                            <Catalog />
+                        </FiltersProvider>
+                    </CatalogProvider>
+                </Layout>
+            </CartProvider>
         </LangContextProvider>
     );
 };

@@ -1,10 +1,21 @@
 import { Icon } from '@/components/Icon';
-import { FC } from 'react';
+import { CartContext } from '@/modules/Cart/context';
+import { FC, useContext } from 'react';
 import style from './index.module.scss';
 
-export const CartButton: FC = () => {
+interface IProps {
+    id: number;
+}
+
+export const CartButton: FC<IProps> = ({ id }) => {
+    const { addProductToCart } = useContext(CartContext);
+
+    const handleClick = () => {
+        addProductToCart?.(id);
+    };
+
     return (
-        <button className={style.index} type="button">
+        <button className={style.index} onClick={handleClick} type="button">
             <Icon name="cart" />
         </button>
     );
