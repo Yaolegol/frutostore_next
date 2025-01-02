@@ -1,6 +1,6 @@
 import { IOption, Select } from '@/components/Select';
 import { SORT_OPTIONS, SORT_QUERY_NAME } from '@/modules/Sort/constants';
-import { FC, useCallback } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { stringifySearchParams } from '@/helpers/query';
 
@@ -25,5 +25,30 @@ export const SortSelectController: FC = () => {
         [pathname, router, searchParams],
     );
 
-    return <Select onSelect={handleSelect} options={SORT_OPTIONS} />;
+    const defaultSelectedOptionIndex = useMemo(() => {
+        const defaultIndex = 0;
+        const sortQuery = searchParams.get(SORT_QUERY_NAME) ?? '';
+
+        if (!sortQuery) {
+            return defaultIndex;
+        }
+
+        const index = SORT_OPTIONS.findIndex(
+            ({ value }) => value === sortQuery,
+        );
+
+        if (index === -1) {
+            return defaultIndex;
+        }
+
+        return index;
+    }, [searchParams]);
+
+    return (
+        <Select
+            defaultSelectedOptionIndex={defaultSelectedOptionIndex}
+            onSelect={handleSelect}
+            options={SORT_OPTIONS}
+        />
+    );
 };

@@ -1,6 +1,14 @@
 import { Icon } from '@/components/Icon';
 import { styles } from '@/helpers/styles';
-import { FC, FocusEvent, useCallback, useMemo, useRef, useState } from 'react';
+import {
+    FC,
+    FocusEvent,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from 'react';
 import style from './index.module.scss';
 
 export interface IOption {
@@ -21,9 +29,21 @@ export const Select: FC<IProps> = ({
 }) => {
     const ref = useRef<HTMLDivElement | null>(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [defaultSelectedIndexState, setDefaultSelectedIndexState] = useState(
+        defaultSelectedOptionIndex,
+    );
     const [selectedValue, setSelectedValue] = useState(
         options[defaultSelectedOptionIndex],
     );
+
+    useEffect(() => {
+        if (defaultSelectedIndexState === defaultSelectedOptionIndex) {
+            return;
+        }
+
+        setDefaultSelectedIndexState(defaultSelectedOptionIndex);
+        setSelectedValue(options[defaultSelectedOptionIndex]);
+    }, [defaultSelectedIndexState, defaultSelectedOptionIndex, options]);
 
     const handleBlur = (e: FocusEvent<HTMLButtonElement>) => {
         if (ref.current?.contains(e.relatedTarget)) {
