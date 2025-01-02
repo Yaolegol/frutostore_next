@@ -1,7 +1,7 @@
 import { getServerLangData } from '@/helpers/lang/server';
-import { CartPageProvider } from '@/modules/Cart/provider/CartPageProvider';
 import { LayoutProvider } from '@/modules/Layout/provider';
 import { Cart } from '@/modules/pages/Cart';
+import { CartPageProvider } from '@/modules/pages/Cart/provider';
 import { CatalogService } from '@/modules/pages/Catalog/service';
 import { Metadata, NextPage } from 'next';
 

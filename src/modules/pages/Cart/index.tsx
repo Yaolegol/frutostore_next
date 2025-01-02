@@ -1,4 +1,4 @@
-import { ProductList } from '@/modules/Cart/components/ProductList';
+import { ProductList } from '@/modules/pages/Cart/components/ProductList';
 import { FC } from 'react';
 import style from './index.module.scss';
 
