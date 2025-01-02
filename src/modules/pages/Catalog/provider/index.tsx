@@ -16,10 +16,12 @@ import {
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { URL_FILTERS_KEY } from '@/modules/Filters/constants';
 import { stringifySearchParams } from '@/helpers/query';
+import { SORT_QUERY_NAME } from '@/modules/Sort/constants';
 
 interface IGetData {
-    filters: string;
-    page: string;
+    filters?: string;
+    page?: string;
+    sort?: string;
 }
 
 interface IProps {
@@ -46,8 +48,12 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
     }, [searchParams]);
 
     const getData = useCallback(
-        async ({ filters, page }: IGetData) => {
-            const newData = await catalogService.getProducts({ filters, page });
+        async ({ filters, page, sort }: IGetData) => {
+            const newData = await catalogService.getProducts({
+                filters,
+                page,
+                sort,
+            });
 
             if (!newData) {
                 return;
@@ -79,9 +85,10 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
 
         const page = String(getPage());
         const filters = searchParams.get(URL_FILTERS_KEY) ?? '';
+        const sort = searchParams.get(SORT_QUERY_NAME) ?? '';
 
         setCurrentSearchParams(searchParams);
-        getData({ filters, page });
+        getData({ filters, page, sort });
     }, [currentSearchParams, getData, getPage, searchParams]);
 
     const setPaginationQuery = useCallback(
