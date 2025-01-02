@@ -1,6 +1,6 @@
 import { CartContext } from '@/modules/Cart/context';
-import { CartButton } from '@/modules/ProductCard/components/CartButton';
-import { Counter } from '@/modules/ProductCard/components/Counter';
+import { CartButton } from '@/modules/pages/Catalog/components/ProductCard/components/CartButton';
+import { Counter } from '@/modules/pages/Catalog/components/ProductCard/components/Counter';
 import { FC, useContext, useMemo } from 'react';
 import style from './index.module.scss';
 
