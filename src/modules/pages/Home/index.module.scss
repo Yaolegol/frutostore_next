@@ -1,3 +1,4 @@
+@import "@/styles/button";
 @import "@/styles/layout";
 
 .index {
@@ -5,6 +6,10 @@
 }
 
 .link {
+    @include button;
+}
+
+.linkContainer {
     display: flex;
     justify-content: center;
     margin-top: 25px;
