@@ -9,6 +9,7 @@ import {
 import { FiltersFromUrl } from '@/modules/Filters/helpers/FiltersFromUrl';
 import { IFilter } from '@/modules/Filters/types';
 import { PAGE_QUERY_NAME } from '@/modules/pages/Catalog/constants';
+import { stringifySearchParams } from '@/helpers/query';
 
 export class BrowserFilters {
     private constructor() {
@@ -127,8 +128,7 @@ export class BrowserFilters {
     };
 
     private getUrlWithQuery = (urlSP: URLSearchParams) => {
-        const queryString = urlSP.toString();
-        const query = queryString ? `?${queryString}` : '';
+        const query = stringifySearchParams(urlSP);
 
         return window.location.pathname + query;
     };

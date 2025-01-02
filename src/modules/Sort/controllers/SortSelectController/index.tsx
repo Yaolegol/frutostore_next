@@ -2,6 +2,7 @@ import { IOption, Select } from '@/components/Select';
 import { SORT_OPTIONS, SORT_QUERY_NAME } from '@/modules/Sort/constants';
 import { FC, useCallback } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { stringifySearchParams } from '@/helpers/query';
 
 export const SortSelectController: FC = () => {
     const searchParams = useSearchParams();
@@ -17,8 +18,7 @@ export const SortSelectController: FC = () => {
                 urlSP.append(SORT_QUERY_NAME, value);
             }
 
-            const stringSP = urlSP.toString();
-            const query = stringSP ? `?${stringSP}` : '';
+            const query = stringifySearchParams(urlSP);
 
             router.push(pathname + query);
         },

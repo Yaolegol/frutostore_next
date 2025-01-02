@@ -15,6 +15,7 @@ import {
 } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { URL_FILTERS_KEY } from '@/modules/Filters/constants';
+import { stringifySearchParams } from '@/helpers/query';
 
 interface IGetData {
     filters: string;
@@ -92,8 +93,7 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
                 urlSP.append(PAGE_QUERY_NAME, String(newPage));
             }
 
-            const queryParams = urlSP.toString();
-            const query = queryParams ? `?${queryParams}` : '';
+            const query = stringifySearchParams(urlSP);
 
             router.push(pathname + query, {
                 scroll: false,

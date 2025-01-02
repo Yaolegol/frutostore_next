@@ -1,5 +1,6 @@
 import { ICatalogData, IQueryParams } from '@/modules/pages/Catalog/types';
 import { ApiService } from '@/service';
+import { stringifySearchParams } from '@/helpers/query';
 
 const CATALOG_ROOT_PATH = '/catalog';
 
@@ -19,8 +20,7 @@ export class CatalogService {
             searchParams.append(key, value);
         });
 
-        const queryString = searchParams.toString();
-        const query = queryString ? `?${queryString}` : '';
+        const query = stringifySearchParams(searchParams);
 
         try {
             const { data } = await apiService.get<ICatalogData>(
