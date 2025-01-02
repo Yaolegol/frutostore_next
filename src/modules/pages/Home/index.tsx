@@ -5,7 +5,7 @@ import style from './index.module.scss';
 
 export const Home: FC = () => {
     return (
-        <div>
+        <div className={style.index}>
             <div className={style.slider}>
                 <Slider />
             </div>

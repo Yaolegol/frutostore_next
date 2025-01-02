@@ -1,0 +1,7 @@
+@import "@/styles/layout";
+@import "@/styles/page";
+
+.index {
+    @include layout-container;
+    @include page;
+}

@@ -1,7 +1,7 @@
 import { getServerLangData } from '@/helpers/lang/server';
-import { Metadata, NextPage } from 'next';
-import { Catalog } from '@/modules/pages/Catalog';
 import { LayoutProvider } from '@/modules/Layout/provider';
+import { Cart } from '@/modules/pages/Cart';
+import { Metadata, NextPage } from 'next';
 
 export const metadata: Metadata = {
     title: 'Fruits store',
@@ -15,7 +15,7 @@ const CartPage: NextPage = async () => {
             defaultLangOption={defaultLangOption}
             defaultLangText={defaultLangText}
         >
-            <Catalog />
+            <Cart />
         </LayoutProvider>
     );
 };
