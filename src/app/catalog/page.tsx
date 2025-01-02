@@ -1,8 +1,6 @@
 import { getServerLangData } from '@/helpers/lang/server';
-import { CartProvider } from '@/modules/Cart/provider';
 import { FiltersProvider } from '@/modules/Filters/provider';
-import { LangContextProvider } from '@/modules/Lang/provider';
-import { Layout } from '@/modules/Layout/components/Layout';
+import { LayoutProvider } from '@/modules/Layout/provider';
 import { CatalogProvider } from '@/modules/pages/Catalog/provider';
 import { CatalogService } from '@/modules/pages/Catalog/service';
 import { Catalog } from '@/modules/pages/Catalog';
@@ -27,20 +25,16 @@ const CatalogPage = async ({ searchParams }: INextPageProps) => {
     });
 
     return (
-        <LangContextProvider
+        <LayoutProvider
             defaultLangOption={defaultLangOption}
             defaultLangText={defaultLangText}
         >
-            <CartProvider>
-                <Layout>
-                    <CatalogProvider defaultData={data}>
-                        <FiltersProvider>
-                            <Catalog />
-                        </FiltersProvider>
-                    </CatalogProvider>
-                </Layout>
-            </CartProvider>
-        </LangContextProvider>
+            <CatalogProvider defaultData={data}>
+                <FiltersProvider>
+                    <Catalog />
+                </FiltersProvider>
+            </CatalogProvider>
+        </LayoutProvider>
     );
 };
 
