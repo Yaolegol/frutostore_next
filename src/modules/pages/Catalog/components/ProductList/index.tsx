@@ -10,7 +10,9 @@ export const ProductList: FC = () => {
 
     return (
         <div className={style.index}>
-            {products.map(({ description, id, image, price, title }) => {
+            {products.map(({ id, image, price, translations }) => {
+                const { description, title } = translations[0];
+
                 return (
                     <div key={id}>
                         <ProductCard

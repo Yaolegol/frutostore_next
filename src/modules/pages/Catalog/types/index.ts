@@ -1,11 +1,13 @@
-import { Record } from 'immutable';
+export interface ITranslation {
+    description: string;
+    title: string;
+}
 
 export interface ICatalogProduct {
-    description: string;
     id: number;
     image: string;
     price: number;
-    title: string;
+    translations: ITranslation[];
 }
 
 export interface ICatalogData {
