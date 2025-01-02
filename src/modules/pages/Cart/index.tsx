@@ -1,4 +1,5 @@
 import { ProductList } from '@/modules/pages/Cart/components/ProductList';
+import { SubmitArea } from '@/modules/pages/Cart/components/SubmitArea';
 import { FC } from 'react';
 import style from './index.module.scss';
 
@@ -10,7 +11,9 @@ export const Cart: FC = () => {
                 <div className={style.products}>
                     <ProductList />
                 </div>
-                <div>test</div>
+                <div className={style.submit}>
+                    <SubmitArea />
+                </div>
             </div>
         </div>
     );

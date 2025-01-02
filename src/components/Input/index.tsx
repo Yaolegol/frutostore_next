@@ -1,7 +1,7 @@
 import { ChangeEvent, FocusEvent, FC } from 'react';
 import style from './index.module.scss';
 
-interface IProps {
+export interface IProps {
     onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     placeholder: string;

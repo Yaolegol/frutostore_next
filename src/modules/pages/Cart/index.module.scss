@@ -7,11 +7,8 @@
 }
 
 .content {
-    display: flex;
+    display: grid;
     gap: 40px;
+    grid-template-columns: 8fr 4fr;
     margin-top: 40px;
-}
-
-.products {
-    flex: 0 1 60%;
 }

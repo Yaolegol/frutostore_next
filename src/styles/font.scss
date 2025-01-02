@@ -1,5 +1,11 @@
 @import '/src/styles/adaptive';
 
+@mixin f_big {
+    font-family: NotoSans, 'sans-serif';
+    font-size: 24px;
+    line-height: 26px;
+}
+
 @mixin f_default {
     font-family: NotoSans, 'sans-serif';
     font-size: 16px;
@@ -13,6 +19,7 @@
 }
 
 @mixin f_h1 {
+    font-family: NotoSans, 'sans-serif';
     font-size: 40px;
     font-weight: 700;
     line-height: 52px;

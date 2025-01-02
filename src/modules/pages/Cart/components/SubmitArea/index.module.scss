@@ -1,0 +1,24 @@
+@import "@/styles/button";
+@import "@/styles/font";
+
+.button {
+    @include button;
+    
+    width: 100%;
+}
+
+.container {
+    margin-top: 25px;
+    
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.content {
+    margin-top: 24px;
+}
+
+.title {
+    @include f_big;
+}
