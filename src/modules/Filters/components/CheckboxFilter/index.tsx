@@ -36,6 +36,8 @@ export const CheckboxFilter: FC<IProps> = ({ onChange, options, title }) => {
         );
 
         if (!checkedOption) {
+            setCheckedCode('');
+
             return;
         }
 
