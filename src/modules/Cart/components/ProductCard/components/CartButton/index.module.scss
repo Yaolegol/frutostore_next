@@ -1,0 +1,15 @@
+@import "@/styles/colors";
+@import "@/styles/transition";
+
+.index {
+    background: $green;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px;
+    transition: $transitionDefault;
+    
+    &:hover {
+        background: $green-10;
+        color: $white;
+    }
+}

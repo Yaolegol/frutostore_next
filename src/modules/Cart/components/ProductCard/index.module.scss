@@ -1,0 +1,54 @@
+@import "@/styles/colors";
+@import "@/styles/layout";
+@import "@/styles/line-clamp";
+
+.index {
+    border-radius: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.container {
+    flex: 1 1 auto;
+    padding: 15px 10px 20px;
+}
+
+.counter {
+    flex: 0 0 auto;
+}
+
+.description {
+    @include line-clamp;
+}
+
+.image {
+    aspect-ratio: 1 / 1;
+    border-radius: 20px;
+    display: block;
+    object-fit: cover;
+    width: 240px;
+}
+
+.price {
+    color: $gray-90;
+    flex: 0 0 auto;
+    font-weight: 700;
+}
+
+.priceArea {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.title {
+    @include line-clamp;
+    
+    font-weight: 700;
+}
+
+.titleArea {
+    padding: 0 0 10px;
+}

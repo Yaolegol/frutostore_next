@@ -5,3 +5,13 @@
     @include layout-container;
     @include page;
 }
+
+.content {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.products {
+    flex: 0 1 60%;
+}

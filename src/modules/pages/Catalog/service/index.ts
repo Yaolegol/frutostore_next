@@ -1,4 +1,4 @@
-import { ICatalogData, IQueryParams } from '@/modules/pages/Catalog/types';
+import { ICatalogData } from '@/modules/pages/Catalog/types';
 import { ApiService } from '@/service';
 import { stringifySearchParams } from '@/helpers/query';
 
@@ -6,8 +6,15 @@ const CATALOG_ROOT_PATH = '/catalog';
 
 const apiService = ApiService.getInstance();
 
+interface IGetProductsProps {
+    filters?: string;
+    page?: string;
+    perPage?: string;
+    sort?: string;
+}
+
 export class CatalogService {
-    getProducts = async (params: IQueryParams = {}) => {
+    getProducts = async (params: IGetProductsProps = {}) => {
         const searchParams = new URLSearchParams();
 
         Object.entries(params).forEach(([key, value]) => {

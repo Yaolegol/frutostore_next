@@ -1,0 +1,35 @@
+@import "@/styles/colors";
+
+.index {
+    align-items: center;
+    border: 1px solid $gray;
+    border-radius: 20px;
+    min-height: 43px;
+    display: flex;
+    max-width: 100px;
+}
+
+.button {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    width: 40px;
+}
+
+.buttonLeft {
+    padding: 12px 0 12px 10px;
+}
+
+.buttonRight {
+    padding: 12px 10px 12px 0
+}
+
+.input {
+    cursor: pointer;
+    min-width: 0;
+    pointer-events: none;
+    text-align: center;
+    width: 20px;
+}
