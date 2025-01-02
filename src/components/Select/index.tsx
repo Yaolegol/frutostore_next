@@ -1,5 +1,3 @@
-'use client';
-
 import { Icon } from '@/components/Icon';
 import { styles } from '@/helpers/styles';
 import { FC, FocusEvent, useCallback, useMemo, useRef, useState } from 'react';
@@ -11,14 +9,21 @@ export interface IOption {
 }
 
 interface IProps {
+    defaultSelectedOptionIndex?: number;
     onSelect: (option: IOption) => void;
     options: IOption[];
 }
 
-export const Select: FC<IProps> = ({ onSelect, options }) => {
+export const Select: FC<IProps> = ({
+    defaultSelectedOptionIndex = 0,
+    onSelect,
+    options,
+}) => {
     const ref = useRef<HTMLDivElement | null>(null);
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState(options[0]);
+    const [selectedValue, setSelectedValue] = useState(
+        options[defaultSelectedOptionIndex],
+    );
 
     const handleBlur = (e: FocusEvent<HTMLButtonElement>) => {
         if (ref.current?.contains(e.relatedTarget)) {

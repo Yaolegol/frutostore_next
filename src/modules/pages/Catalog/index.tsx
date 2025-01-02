@@ -4,7 +4,7 @@ import { Filters } from '@/modules/Filters/components/Filters';
 import { Pagination } from '@/modules/pages/Catalog/components/Pagination';
 import { ProductList } from '@/modules/pages/Catalog/components/ProductList';
 import { ShowMoreButton } from '@/modules/pages/Catalog/components/ShowMoreButton';
-import { SortSelect } from '@/modules/Sort/components/SortSelect';
+import { SortSelectController } from '@/modules/Sort/controllers/SortSelectController';
 import { FC } from 'react';
 import style from './index.module.scss';
 
@@ -18,7 +18,7 @@ export const Catalog: FC = () => {
                 </div>
                 <div>
                     <div className={style.sortContainer}>
-                        <SortSelect />
+                        <SortSelectController />
                     </div>
                     <div className={style.productsContainer}>
                         <ProductList />
