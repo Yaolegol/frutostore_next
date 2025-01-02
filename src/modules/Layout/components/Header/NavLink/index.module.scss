@@ -1,0 +1,13 @@
+@import "@/styles/colors";
+@import "@/styles/transition";
+
+.index {
+    border-radius: 20px;
+    padding: 10px 20px;
+    transition: all $transitionDefault;
+    
+    &.active,
+    &:hover {
+        background: $green;
+    }
+}
