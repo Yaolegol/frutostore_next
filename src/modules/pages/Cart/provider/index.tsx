@@ -1,7 +1,7 @@
 'use client';
 
 import { CartContext } from '@/modules/Cart/context';
-import { CartPageContext } from '@/modules/Cart/context/CartPageContext';
+import { CartPageContext } from '@/modules/pages/Cart/context';
 import { ICatalogProduct } from '@/modules/pages/Catalog/types';
 import { FC, ReactNode, useContext, useMemo } from 'react';
 

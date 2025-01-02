@@ -1,7 +1,7 @@
 'use client';
 
-import { ProductCard } from '@/modules/Cart/components/ProductCard';
-import { CartPageContext } from '@/modules/Cart/context/CartPageContext';
+import { ProductCard } from '@/modules/pages/Cart/components/ProductCard';
+import { CartPageContext } from '@/modules/pages/Cart/context';
 import { FC, useContext } from 'react';
 import style from './index.module.scss';
 
