@@ -1,4 +1,5 @@
 @import '/src/styles/colors';
+@import '/src/styles/transition';
 
 .index {
     position: relative;
@@ -13,6 +14,12 @@
     display: flex;
     gap: 8px;
     padding: 10px;
+    transition: all $transitionDefault;
+    
+    &:focus,
+    &:hover {
+        border-color: $gray-90;
+    }
 }
 
 .contentArea {
@@ -34,6 +41,12 @@
 
 .iconArrow {
     color: $gray-10;
+    transition: all $transitionDefault;
+    
+    .buttonOpen:focus &,
+    .buttonOpen:hover & {
+        color: $gray-90;
+    }
 
     .open & {
         transform: rotate(180deg);

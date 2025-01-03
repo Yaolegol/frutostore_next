@@ -8,6 +8,7 @@
     transition: all $transitionDefault;
     width: 100%;
     
+    &:focus,
     &:hover {
         border-color: $gray-90;
     }

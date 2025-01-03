@@ -1,5 +1,5 @@
 import { getPriceFormatted } from '@/helpers/price';
-import { BuyBlock } from '@/modules/pages/Catalog/components/ProductCard/components/BuyBlock';
+import { BuyBlock } from '@/modules/pages/Cart/components/ProductCard/components/BuyBlock';
 import { FC } from 'react';
 import style from './index.module.scss';
 

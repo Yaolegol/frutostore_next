@@ -1,4 +1,5 @@
 @import "@/styles/colors";
+@import "@/styles/transition";
 
 .index {
     align-items: center;
@@ -7,6 +8,11 @@
     min-height: 43px;
     display: flex;
     max-width: 100px;
+    transition: $transitionDefault;
+    
+    &:hover {
+        border-color: $gray-90;
+    }
 }
 
 .button {
