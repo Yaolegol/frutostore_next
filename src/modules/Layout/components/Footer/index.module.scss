@@ -1,0 +1,13 @@
+@import "@/styles/layout";
+
+.index {
+    @include layout-container;
+}
+
+.container {
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}

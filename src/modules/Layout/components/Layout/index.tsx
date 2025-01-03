@@ -1,3 +1,4 @@
+import { Footer } from '@/modules/Layout/components/Footer';
 import { Header } from '@/modules/Layout/components/Header';
 import { FC, ReactNode } from 'react';
 import style from './index.module.scss';
@@ -11,7 +12,9 @@ export const Layout: FC<IProps> = ({ children }) => {
         <body className={style.index}>
             <Header />
             <div className={style.content}>{children}</div>
-            <footer className={style.footer}>TEST FOOTER</footer>
+            <div className={style.footer}>
+                <Footer />
+            </div>
         </body>
     );
 };
