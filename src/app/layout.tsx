@@ -15,6 +15,9 @@ const RootLayout = async ({ children }: IProps) => {
 
     return (
         <html lang={defaultLangOption.value}>
+            <head>
+                <link rel="icon" href="/favicon.svg" />
+            </head>
             <LangContextProvider
                 defaultLangOption={defaultLangOption}
                 defaultLangText={defaultLangText}
