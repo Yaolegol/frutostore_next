@@ -1,5 +1,6 @@
 'use client';
 
+import { IntlMessage } from '@/modules/Lang/components/IntlMessage';
 import { CatalogContext } from '@/modules/pages/Catalog/context';
 import { FC, useContext } from 'react';
 import style from './index.module.scss';
@@ -13,7 +14,7 @@ export const ShowMoreButton: FC = () => {
 
     return (
         <button className={style.index} onClick={getNextPage} type="button">
-            Показать еще
+            <IntlMessage id="pagination.more" />
         </button>
     );
 };
