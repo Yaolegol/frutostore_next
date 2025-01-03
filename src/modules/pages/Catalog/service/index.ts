@@ -8,6 +8,7 @@ const apiService = ApiService.getInstance();
 
 interface IGetProductsProps {
     filters?: string;
+    locale?: string;
     page?: string;
     perPage?: string;
     sort?: string;

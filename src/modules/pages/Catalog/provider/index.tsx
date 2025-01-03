@@ -12,14 +12,17 @@ import {
     useMemo,
     useCallback,
     useEffect,
+    useContext,
 } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { URL_FILTERS_KEY } from '@/modules/Filters/constants';
 import { stringifySearchParams } from '@/helpers/query';
 import { SORT_QUERY_NAME } from '@/modules/Sort/constants';
+import { LangContext } from '@/modules/Lang/context';
 
 interface IGetData {
     filters?: string;
+    locale?: string;
     page?: string;
     sort?: string;
 }
@@ -32,10 +35,13 @@ interface IProps {
 const catalogService = new CatalogService();
 
 export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
+    const { langOption } = useContext(LangContext);
+
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
+    const [currentLang, setCurrentLang] = useState(langOption?.value);
     const [currentSearchParams, setCurrentSearchParams] =
         useState(searchParams);
     const [paginationType, setPaginationType] = useState(0);
@@ -48,9 +54,10 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
     }, [searchParams]);
 
     const getData = useCallback(
-        async ({ filters, page, sort }: IGetData) => {
+        async ({ filters, locale, page, sort }: IGetData) => {
             const newData = await catalogService.getProducts({
                 filters,
+                locale,
                 page,
                 sort,
             });
@@ -79,17 +86,30 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
     );
 
     useEffect(() => {
-        if (searchParams.toString() === currentSearchParams.toString()) {
+        const isSameData =
+            searchParams.toString() === currentSearchParams.toString() &&
+            langOption?.value === currentLang;
+
+        if (isSameData) {
             return;
         }
 
         const page = String(getPage());
         const filters = searchParams.get(URL_FILTERS_KEY) ?? '';
         const sort = searchParams.get(SORT_QUERY_NAME) ?? '';
+        const locale = langOption?.value;
 
+        setCurrentLang(locale);
         setCurrentSearchParams(searchParams);
-        getData({ filters, page, sort });
-    }, [currentSearchParams, getData, getPage, searchParams]);
+        getData({ filters, locale, page, sort });
+    }, [
+        currentLang,
+        currentSearchParams,
+        getData,
+        getPage,
+        langOption,
+        searchParams,
+    ]);
 
     const setPaginationQuery = useCallback(
         (newPage: number) => {

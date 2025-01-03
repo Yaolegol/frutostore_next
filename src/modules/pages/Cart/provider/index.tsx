@@ -13,6 +13,7 @@ import {
     useMemo,
     useState,
 } from 'react';
+import { LangContext } from '@/modules/Lang/context';
 
 interface IProps {
     children: ReactNode;
@@ -23,18 +24,20 @@ const catalogService = new CatalogService();
 export const CartPageProvider: FC<IProps> = ({ children }) => {
     const [products, setProducts] = useState<ICatalogProduct[]>([]);
     const { cart } = useContext(CartContext);
+    const { langOption } = useContext(LangContext);
 
     const getProducts = useCallback(async () => {
         const data = await catalogService.getProducts({
+            locale: langOption?.value,
             perPage: '50',
         });
 
         setProducts(data?.data ?? []);
-    }, []);
+    }, [langOption?.value]);
 
     useEffect(() => {
         getProducts();
-    }, [getProducts]);
+    }, [getProducts, langOption]);
 
     const value = useMemo(() => {
         if (!products.length) {

@@ -20,6 +20,7 @@ const CatalogPage = async ({ searchParams }: INextPageProps) => {
 
     const data = await catalogService.getProducts({
         filters,
+        locale: defaultLangOption.value,
         page,
         sort,
     });
