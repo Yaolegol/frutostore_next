@@ -14,18 +14,16 @@ import {
     useEffect,
     useContext,
 } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import {
+    ReadonlyURLSearchParams,
+    usePathname,
+    useRouter,
+    useSearchParams,
+} from 'next/navigation';
 import { URL_FILTERS_KEY } from '@/modules/Filters/constants';
 import { stringifySearchParams } from '@/helpers/query';
 import { SORT_QUERY_NAME } from '@/modules/Sort/constants';
 import { LangContext } from '@/modules/Lang/context';
-
-interface IGetData {
-    filters?: string;
-    locale?: string;
-    page?: string;
-    sort?: string;
-}
 
 interface IProps {
     children: ReactNode;
@@ -41,9 +39,9 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
-    const [currentLang, setCurrentLang] = useState(langOption?.value);
+    const [currentLang, setCurrentLang] = useState<string>();
     const [currentSearchParams, setCurrentSearchParams] =
-        useState(searchParams);
+        useState<ReadonlyURLSearchParams>();
     const [paginationType, setPaginationType] = useState(0);
     const [data, setData] = useState<ICatalogData | null>(defaultData);
 
@@ -53,69 +51,53 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
         return Number(page);
     }, [searchParams]);
 
-    const getData = useCallback(
-        async ({ filters, locale, page, sort }: IGetData) => {
-            const newData = await catalogService.getProducts({
-                filters,
-                locale,
-                page,
-                sort,
+    const getData = useCallback(async () => {
+        const page = String(getPage());
+        const filters = searchParams.get(URL_FILTERS_KEY) ?? '';
+        const sort = searchParams.get(SORT_QUERY_NAME) ?? '';
+        const locale = langOption?.value;
+
+        const newData = await catalogService.getProducts({
+            filters,
+            locale,
+            page,
+            sort,
+        });
+
+        if (!newData) {
+            return;
+        }
+
+        if (paginationType === 1) {
+            const products = data?.data ?? [];
+            products.push(...newData.data);
+
+            setData({
+                ...newData,
+                data: products,
             });
 
-            if (!newData) {
-                return;
-            }
+            setPaginationType(0);
 
-            if (paginationType === 1) {
-                const products = data?.data ?? [];
-                products.push(...newData.data);
+            return;
+        }
 
-                setData({
-                    ...newData,
-                    data: products,
-                });
-
-                setPaginationType(0);
-
-                return;
-            }
-
-            setData(newData);
-        },
-        [data, paginationType],
-    );
+        setData(newData);
+    }, [data, getPage, langOption, paginationType, searchParams]);
 
     useEffect(() => {
-        console.log('EFFECT 1');
-
         const isSameData =
-            searchParams.toString() === currentSearchParams.toString() &&
+            searchParams.toString() === currentSearchParams?.toString() &&
             langOption?.value === currentLang;
 
         if (isSameData) {
             return;
         }
 
-        console.log('EFFECT 2');
-        console.log('langOption');
-        console.log(langOption);
-
-        const page = String(getPage());
-        const filters = searchParams.get(URL_FILTERS_KEY) ?? '';
-        const sort = searchParams.get(SORT_QUERY_NAME) ?? '';
-        const locale = langOption?.value;
-
-        setCurrentLang(locale);
+        setCurrentLang(langOption?.value);
         setCurrentSearchParams(searchParams);
-        getData({ filters, locale, page, sort });
-    }, [
-        currentLang,
-        currentSearchParams,
-        getData,
-        getPage,
-        langOption,
-        searchParams,
-    ]);
+        getData();
+    }, [currentLang, currentSearchParams, getData, langOption, searchParams]);
 
     const setPaginationQuery = useCallback(
         (newPage: number) => {
