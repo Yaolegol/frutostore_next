@@ -1,5 +1,18 @@
 @import "/src/styles/colors";
+@import "/src/styles/font";
 
-.index {
+.inputContainer {
+    padding-bottom: 16px;
+}
 
+.error {
+    @include f_small;
+    
+    display: none;
+    color: $red-10;
+    margin-top: -12px;
+    
+    .notValid & {
+        display: block;
+    }
 }
