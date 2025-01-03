@@ -1,10 +1,10 @@
 'use client';
 
 import { Content } from '@/modules/pages/Cart/components/Content';
+import { Empty } from '@/modules/pages/Cart/components/Empty';
 import { CartPageContext } from '@/modules/pages/Cart/context';
 import { FC, useContext } from 'react';
 import style from './index.module.scss';
-import { Empty } from '@/modules/pages/Cart/components/Empty';
 
 export const Cart: FC = () => {
     const { productsInCart } = useContext(CartPageContext);
