@@ -15,16 +15,13 @@ export const Slider: FC = () => {
         <div className={style.index}>
             <Swiper onSwiper={setSwiper}>
                 <SwiperSlide>
-                    <Slide alt="apple" src="/images/pages/home/apple.jpg" />
+                    <Slide alt="apple" src="/images/pages/home/1.jpg" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <Slide alt="cherry" src="/images/pages/home/cherry.jpg" />
+                    <Slide alt="cherry" src="/images/pages/home/2.jpg" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <Slide
-                        alt="grapefruit"
-                        src="/images/pages/home/grapefruit.jpg"
-                    />
+                    <Slide alt="grapefruit" src="/images/pages/home/3.jpg" />
                 </SwiperSlide>
             </Swiper>
             <SliderPrevButton swiper={swiper} />
