@@ -1,8 +1,12 @@
 {
+    "cart.submit": "Place an order",
+    "cart.submit.button": "Submit",
+    "cart.title": "Cart",
     "catalog.title": "Catalog",
     "common.category.title": "Category",
     "common.fruit.title": "Fruit",
     "common.berry.title": "Berry",
+    "common.name.title": "Name",
     "common.price.title": "Price",
     "filters.range.from.title": "From",
     "filters.range.to.title": "To",

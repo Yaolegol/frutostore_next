@@ -1,5 +1,6 @@
 'use client';
 
+import { IntlMessage } from '@/modules/Lang/components/IntlMessage';
 import { Content } from '@/modules/pages/Cart/components/Content';
 import { Empty } from '@/modules/pages/Cart/components/Empty';
 import { CartPageContext } from '@/modules/pages/Cart/context';
@@ -11,7 +12,9 @@ export const Cart: FC = () => {
 
     return (
         <div className={style.index}>
-            <h1>Корзина</h1>
+            <h1>
+                <IntlMessage id="cart.title" />
+            </h1>
             <div className={style.content}>
                 {productsInCart.length ? <Content /> : <Empty />}
             </div>

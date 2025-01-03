@@ -1,8 +1,12 @@
 {
+    "cart.submit": "Оформить",
+    "cart.submit.button": "Отправить",
+    "cart.title": "Корзина",
     "catalog.title": "Каталог",
     "common.category.title": "Категория",
     "common.fruit.title": "Фрукты",
     "common.berry.title": "Ягоды",
+    "common.name.title": "Имя",
     "common.price.title": "Цена",
     "filters.range.from.title": "От",
     "filters.range.to.title": "До",

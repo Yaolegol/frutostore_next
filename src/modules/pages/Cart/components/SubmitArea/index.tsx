@@ -7,6 +7,9 @@ import { ModalContext } from '@/modules/Modal/context';
 import { EMAIL_REGEXP } from '@/regexp';
 import { ChangeEvent, FC, useCallback, useContext, useState } from 'react';
 import style from './index.module.scss';
+import { IntlMessage } from '@/modules/Lang/components/IntlMessage';
+import { LangContext } from '@/modules/Lang/context';
+import { getMessage } from '@/modules/Lang/helpers';
 
 const INITIAL_FIELDS_STATE = {
     email: {
@@ -26,6 +29,7 @@ const INITIAL_FIELDS_STATE = {
 const { ENTER_EMAIL, ENTER_NAME } = FORM_ERRORS;
 
 export const SubmitArea: FC = () => {
+    const { langText } = useContext(LangContext);
     const { modalShow } = useContext(ModalContext);
 
     const [fieldsState, setFieldsState] = useState(INITIAL_FIELDS_STATE);
@@ -119,7 +123,9 @@ export const SubmitArea: FC = () => {
 
     return (
         <div className={style.index}>
-            <div className={style.title}>Оформить</div>
+            <div className={style.title}>
+                <IntlMessage id="cart.submit" />
+            </div>
             <div className={style.content}>
                 <div className={style.container}>
                     <FieldInput
@@ -139,13 +145,13 @@ export const SubmitArea: FC = () => {
                         name="name"
                         onBlur={handleBlurName}
                         onChange={handleChangeName}
-                        placeholder="Имя"
+                        placeholder={getMessage('common.name.title', langText)}
                         value={name.value}
                     />
                 </div>
                 <div className={style.container}>
                     <button className={style.button} onClick={handleSubmit}>
-                        Отправить
+                        <IntlMessage id="cart.submit.button" />
                     </button>
                 </div>
             </div>
