@@ -1,10 +1,8 @@
-import { Modal } from '@/modules/Modal/components/Modal';
+import { CheckoutModal } from '@/modules/pages/Cart/components/CheckoutModal';
 import { ProductList } from '@/modules/pages/Cart/components/ProductList';
 import { SubmitArea } from '@/modules/pages/Cart/components/SubmitArea';
 import { FC } from 'react';
 import style from './index.module.scss';
-import { MODAL_NAMES } from '@/modules/Modal/constants';
-import { CheckoutModal } from '@/modules/pages/Cart/components/CheckoutModal';
 
 export const Cart: FC = () => {
     return (
