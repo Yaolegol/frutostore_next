@@ -1,0 +1,13 @@
+{
+    "catalog.title": "Catalog",
+    "common.category.title": "Category",
+    "common.fruit.title": "Fruit",
+    "common.berry.title": "Berry",
+    "common.price.title": "Price",
+    "filters.range.from.title": "From",
+    "filters.range.to.title": "To",
+    "header.links.cart": "Cart",
+    "header.links.catalog": "Catalog",
+    "header.links.home": "Home",
+    "home.toBuy": "buy now!"
+}

@@ -14,12 +14,12 @@ export enum FILTERS_KEYS {
 export const TYPE_FILTER_OPTIONS = [
     {
         isDefaultChecked: false,
-        text: 'Фрукты',
+        text: 'common.fruit.title',
         valueCode: 'fruit',
     },
     {
         isDefaultChecked: false,
-        text: 'Ягоды',
+        text: 'common.berry.title',
         valueCode: 'berry',
     },
 ];

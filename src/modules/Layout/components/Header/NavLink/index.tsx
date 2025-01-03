@@ -3,11 +3,11 @@
 import { styles } from '@/helpers/styles';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import style from './index.module.scss';
 
 interface IProps {
-    children: string;
+    children: ReactNode;
     href: string;
 }
 

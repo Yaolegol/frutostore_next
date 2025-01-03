@@ -4,7 +4,7 @@ export const getLangText = async (lang: string) => {
     let langText = {};
 
     try {
-        const data = await import(`@/modules/Home/text/${lang}/index.json`);
+        const data = await import(`@/text/${lang}/index.json`);
 
         langText = data.default;
     } catch (e) {

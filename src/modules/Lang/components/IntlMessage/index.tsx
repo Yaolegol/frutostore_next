@@ -1,4 +1,6 @@
-import { HomePageContext } from '@/modules/pages/Home/context';
+'use client';
+
+import { LangContext } from '@/modules/Lang/context';
 import { getMessage } from '@/modules/Lang/helpers';
 import { FC, useContext, useMemo } from 'react';
 
@@ -7,7 +9,7 @@ interface IProps {
 }
 
 export const IntlMessage: FC<IProps> = ({ id }) => {
-    const { langText } = useContext(HomePageContext);
+    const { langText } = useContext(LangContext);
 
     return useMemo(() => {
         return getMessage(id, langText);

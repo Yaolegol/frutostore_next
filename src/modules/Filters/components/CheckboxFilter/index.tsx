@@ -1,7 +1,16 @@
 import { Checkbox } from '@/components/Checkbox';
 import { IFilterOption } from '@/modules/Filters/types';
-import { FC, useCallback, ChangeEvent, useState, useEffect } from 'react';
+import {
+    FC,
+    useCallback,
+    ChangeEvent,
+    useState,
+    useEffect,
+    useContext,
+} from 'react';
 import style from './index.module.scss';
+import { LangContext } from '@/modules/Lang/context';
+import { getMessage } from '@/modules/Lang/helpers';
 
 interface IProps {
     code: string;
@@ -11,6 +20,7 @@ interface IProps {
 }
 
 export const CheckboxFilter: FC<IProps> = ({ onChange, options, title }) => {
+    const { langText } = useContext(LangContext);
     const [checkedCode, setCheckedCode] = useState('');
 
     const handleChange = useCallback(
@@ -54,7 +64,7 @@ export const CheckboxFilter: FC<IProps> = ({ onChange, options, title }) => {
                             <Checkbox
                                 isChecked={checkedCode === valueCode}
                                 onChange={handleChange(valueCode)}
-                                text={text}
+                                text={getMessage(text, langText)}
                             />
                         </div>
                     );

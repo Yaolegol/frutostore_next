@@ -10,12 +10,15 @@ import {
 import { FiltersContext } from '@/modules/Filters/context';
 import { getFormattedRangeValueFromUrl } from '@/modules/Filters/helpers';
 import { BrowserFilters } from '@/modules/Filters/helpers/BrowserFilters';
+import { LangContext } from '@/modules/Lang/context';
 import { useCallback, useContext, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
+import { getMessage } from '@/modules/Lang/helpers';
 
 const { PRICE } = FILTERS_KEYS;
 
 export const RangeFilterController = () => {
+    const { langText } = useContext(LangContext);
     const { filters } = useContext(FiltersContext);
     const router = useRouter();
 
@@ -49,13 +52,13 @@ export const RangeFilterController = () => {
     return (
         <RangeFilter
             maxDefaultValue={defaultMax}
-            maxPlaceholder={`до ${MAX_PRICE}`}
+            maxPlaceholder={`${getMessage('filters.range.to.title', langText)} ${MAX_PRICE}`}
             maxRange={MAX_PRICE}
             minDefaultValue={defaultMin}
-            minPlaceholder={`от ${MIN_PRICE}`}
+            minPlaceholder={`${getMessage('filters.range.from.title', langText)} ${MIN_PRICE}`}
             minRange={MIN_PRICE}
             onApply={handleApply}
-            title="Цена"
+            title={getMessage('common.price.title', langText)}
         />
     );
 };

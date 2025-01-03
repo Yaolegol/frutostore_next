@@ -2,12 +2,15 @@ import { CheckboxFilter } from '@/modules/Filters/components/CheckboxFilter';
 import { FILTERS_KEYS, TYPE_FILTER_OPTIONS } from '@/modules/Filters/constants';
 import { FiltersContext } from '@/modules/Filters/context';
 import { BrowserFilters } from '@/modules/Filters/helpers/BrowserFilters';
+import { LangContext } from '@/modules/Lang/context';
 import { useCallback, useContext, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
+import { getMessage } from '@/modules/Lang/helpers';
 
 const { CATEGORY } = FILTERS_KEYS;
 
 export const CheckboxFilterController = () => {
+    const { langText } = useContext(LangContext);
     const { filters } = useContext(FiltersContext);
     const router = useRouter();
 
@@ -68,7 +71,7 @@ export const CheckboxFilterController = () => {
             code={CATEGORY}
             onChange={handleChange}
             options={options}
-            title="Категория"
+            title={getMessage('common.category.title', langText)}
         />
     );
 };

@@ -6,6 +6,7 @@ import { createContext } from 'react';
 
 export interface ILangContext {
     langOption?: ILangData;
+    langText?: any;
     onLangChange?: (option: IOption) => void;
 }
 
