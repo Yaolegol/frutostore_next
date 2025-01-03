@@ -11,6 +11,8 @@
     "filters.range.from.title": "От",
     "filters.range.to.title": "До",
     "footer.copyright": "Все права защищены",
+    "form.errors.email": "Введите корректный email",
+    "form.errors.name": "Введите имя",
     "header.links.cart": "Корзина",
     "header.links.catalog": "Каталог",
     "header.links.home": "Главная",

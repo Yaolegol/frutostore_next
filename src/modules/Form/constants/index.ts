@@ -1,4 +1,4 @@
 export enum FORM_ERRORS {
-    ENTER_EMAIL = 'Введите корректный email',
-    ENTER_NAME = 'Введите имя',
+    ENTER_EMAIL = 'form.errors.email',
+    ENTER_NAME = 'form.errors.name',
 }

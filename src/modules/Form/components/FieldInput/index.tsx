@@ -1,4 +1,5 @@
 import { Input } from '@/components/Input';
+import { IntlMessage } from '@/modules/Lang/components/IntlMessage';
 import { ChangeEvent, FC, FocusEvent } from 'react';
 import style from './index.module.scss';
 
@@ -32,7 +33,9 @@ export const FieldInput: FC<IProps> = ({
                     value={value}
                 />
             </div>
-            <div className={style.error}>{error}</div>
+            <div className={style.error}>
+                <IntlMessage id={error} />
+            </div>
         </div>
     );
 };

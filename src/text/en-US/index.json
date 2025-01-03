@@ -11,6 +11,8 @@
     "filters.range.from.title": "From",
     "filters.range.to.title": "To",
     "footer.copyright": "All rights reserved",
+    "form.errors.email": "Please enter a valid email",
+    "form.errors.name": "Please enter your name",
     "header.links.cart": "Cart",
     "header.links.catalog": "Catalog",
     "header.links.home": "Home",
