@@ -8,3 +8,5 @@ export const LANG_OPTIONS = [
         value: 'en-US',
     },
 ];
+
+export const LANG_COOKIE_NAME = 'lang';

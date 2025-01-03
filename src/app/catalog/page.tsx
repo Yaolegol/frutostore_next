@@ -1,6 +1,5 @@
-import { getServerLangData } from '@/helpers/lang/server';
+import { getLangFromHeaders } from '@/helpers/lang/server';
 import { FiltersProvider } from '@/modules/Filters/provider';
-import { LayoutProvider } from '@/modules/Layout/provider';
 import { CatalogProvider } from '@/modules/pages/Catalog/provider';
 import { CatalogService } from '@/modules/pages/Catalog/service';
 import { Catalog } from '@/modules/pages/Catalog';
@@ -15,27 +14,21 @@ const catalogService = new CatalogService();
 
 const CatalogPage = async ({ searchParams }: INextPageProps) => {
     const { filters, page, sort } = searchParams;
-
-    const { defaultLangOption, defaultLangText } = await getServerLangData();
+    const lang = getLangFromHeaders();
 
     const data = await catalogService.getProducts({
         filters,
-        locale: defaultLangOption.value,
+        locale: lang,
         page,
         sort,
     });
 
     return (
-        <LayoutProvider
-            defaultLangOption={defaultLangOption}
-            defaultLangText={defaultLangText}
-        >
-            <CatalogProvider defaultData={data}>
-                <FiltersProvider>
-                    <Catalog />
-                </FiltersProvider>
-            </CatalogProvider>
-        </LayoutProvider>
+        <CatalogProvider defaultData={data}>
+            <FiltersProvider>
+                <Catalog />
+            </FiltersProvider>
+        </CatalogProvider>
     );
 };
 

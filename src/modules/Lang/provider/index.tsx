@@ -5,6 +5,8 @@ import { getLangText } from '@/helpers/lang';
 import { LangContext } from '@/modules/Lang/context';
 import { ILangData } from '@/modules/Lang/types';
 import { FC, useState, ReactNode, useCallback } from 'react';
+import { setCookie } from '@/helpers/cookie';
+import { LANG_COOKIE_NAME } from '@/modules/Lang/constants';
 
 interface IProps {
     children: ReactNode;
@@ -33,6 +35,7 @@ export const LangContextProvider: FC<IProps> = ({
         (option: IOption) => {
             setLangOption(option);
             importText(option);
+            setCookie(LANG_COOKIE_NAME, option.value);
         },
         [importText],
     );

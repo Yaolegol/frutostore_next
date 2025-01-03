@@ -86,6 +86,8 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
     );
 
     useEffect(() => {
+        console.log('EFFECT 1');
+
         const isSameData =
             searchParams.toString() === currentSearchParams.toString() &&
             langOption?.value === currentLang;
@@ -93,6 +95,10 @@ export const CatalogProvider: FC<IProps> = ({ children, defaultData }) => {
         if (isSameData) {
             return;
         }
+
+        console.log('EFFECT 2');
+        console.log('langOption');
+        console.log(langOption);
 
         const page = String(getPage());
         const filters = searchParams.get(URL_FILTERS_KEY) ?? '';
