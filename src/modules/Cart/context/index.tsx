@@ -6,6 +6,7 @@ import { createContext } from 'react';
 export interface ICartContext {
     addProductToCart?: (id: number) => void;
     cart: TCart;
+    clearCard?: () => void;
     decrementProductInCard?: (id: number) => void;
     incrementProductInCard?: (id: number) => void;
 }

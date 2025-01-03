@@ -1,4 +1,5 @@
 {
+    "cart.empty.message.title": "There are no fruits in the basket yet :(",
     "cart.submit": "Place an order",
     "cart.submit.button": "Submit",
     "cart.title": "Cart",
@@ -17,6 +18,9 @@
     "header.links.catalog": "Catalog",
     "header.links.home": "Home",
     "home.toBuy": "buy now!",
+    "order.thanksForOrder.description1": "We will call you back within 5 minutes",
+    "order.thanksForOrder.description2": "to clarify order details!",
+    "order.thanksForOrder.title": "Thank you for your purchase!",
     "pagination.more": "Load more",
     "pagination.toStart": "to beginning",
     "pagination.toEnd": "to end",

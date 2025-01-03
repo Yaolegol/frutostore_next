@@ -36,6 +36,12 @@ export const CartProvider: FC<IProps> = ({ children }) => {
         setCart(newCart);
     }, []);
 
+    const clearCard = useCallback(() => {
+        cartService.clearCart();
+
+        setCart([]);
+    }, []);
+
     const decrementProductInCard = useCallback((id: number) => {
         const newCart = cartService.decrementProductInCart(id);
 
@@ -52,12 +58,14 @@ export const CartProvider: FC<IProps> = ({ children }) => {
         return {
             addProductToCart,
             cart,
+            clearCard,
             decrementProductInCard,
             incrementProductInCard,
         };
     }, [
         addProductToCart,
         cart,
+        clearCard,
         decrementProductInCard,
         incrementProductInCard,
     ]);

@@ -1,4 +1,5 @@
 {
+    "cart.empty.message.title": "В корзине пока нет фруктов :(",
     "cart.submit": "Оформить",
     "cart.submit.button": "Отправить",
     "cart.title": "Корзина",
@@ -17,6 +18,9 @@
     "header.links.catalog": "Каталог",
     "header.links.home": "Главная",
     "home.toBuy": "К покупкам!",
+    "order.thanksForOrder.description1": "В течении 5 минут мы Вам перезвоним",
+    "order.thanksForOrder.description2": "для уточнения деталей заказа!",
+    "order.thanksForOrder.title": "Спасибо за покупку!",
     "pagination.more": "Показать еще",
     "pagination.toStart": "в начало",
     "pagination.toEnd": "в конец",

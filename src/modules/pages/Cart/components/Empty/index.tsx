@@ -1,8 +1,12 @@
 'use client';
 
+import { IntlMessage } from '@/modules/Lang/components/IntlMessage';
 import { FC } from 'react';
-import style from './index.module.scss';
 
 export const Empty: FC = () => {
-    return <div>В корзине пока нет фруктов :(</div>;
+    return (
+        <div>
+            <IntlMessage id="cart.empty.message.title" />
+        </div>
+    );
 };
