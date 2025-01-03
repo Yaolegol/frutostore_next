@@ -153,6 +153,10 @@ export class BrowserFilters {
         }
     };
 
+    clearFilters = () => {
+        this.filters = [];
+    };
+
     updateFilters = () => {
         const { filters } = new FiltersFromUrl();
 
