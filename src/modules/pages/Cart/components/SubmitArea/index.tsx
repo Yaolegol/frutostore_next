@@ -1,6 +1,7 @@
 'use client';
 
 import { FieldInput } from '@/modules/Form/components/FieldInput';
+import { FORM_ERRORS } from '@/modules/Form/constants';
 import { MODAL_NAMES } from '@/modules/Modal/constants';
 import { ModalContext } from '@/modules/Modal/context';
 import { EMAIL_REGEXP } from '@/regexp';
@@ -22,6 +23,8 @@ const INITIAL_FIELDS_STATE = {
     },
 };
 
+const { ENTER_EMAIL, ENTER_NAME } = FORM_ERRORS;
+
 export const SubmitArea: FC = () => {
     const { modalShow } = useContext(ModalContext);
 
@@ -34,6 +37,22 @@ export const SubmitArea: FC = () => {
         );
 
         if (isNotValid) {
+            const { email, name } = fieldsState;
+
+            setFieldsState({
+                ...fieldsState,
+                email: {
+                    ...email,
+                    error: ENTER_EMAIL,
+                    isDirty: true,
+                },
+                name: {
+                    ...name,
+                    error: ENTER_NAME,
+                    isDirty: true,
+                },
+            });
+
             return;
         }
 
@@ -48,7 +67,7 @@ export const SubmitArea: FC = () => {
             ...fieldsState,
             email: {
                 ...email,
-                error: !isValid ? 'Введите корректный email' : '',
+                error: !isValid ? ENTER_EMAIL : '',
                 isValid,
             },
         });
@@ -62,7 +81,7 @@ export const SubmitArea: FC = () => {
             ...fieldsState,
             name: {
                 ...name,
-                error: !isValid ? 'Введите имя' : '',
+                error: !isValid ? ENTER_NAME : '',
                 isValid,
             },
         });
