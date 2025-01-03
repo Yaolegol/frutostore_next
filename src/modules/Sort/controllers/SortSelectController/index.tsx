@@ -3,6 +3,7 @@ import { SORT_OPTIONS, SORT_QUERY_NAME } from '@/modules/Sort/constants';
 import { FC, useCallback, useMemo } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { stringifySearchParams } from '@/helpers/query';
+import { PAGE_QUERY_NAME } from '@/modules/pages/Catalog/constants';
 
 export const SortSelectController: FC = () => {
     const searchParams = useSearchParams();
@@ -13,6 +14,7 @@ export const SortSelectController: FC = () => {
         ({ value }: IOption) => {
             const urlSP = new URLSearchParams(searchParams);
             urlSP.delete(SORT_QUERY_NAME);
+            urlSP.delete(PAGE_QUERY_NAME);
 
             if (value) {
                 urlSP.append(SORT_QUERY_NAME, value);

@@ -1,0 +1,7 @@
+@import "@/styles/layout";
+
+.index {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 8fr 4fr;
+}
