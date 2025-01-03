@@ -2,15 +2,15 @@ export const SORT_QUERY_NAME = 'sort';
 
 export const SORT_OPTIONS = [
     {
-        label: 'По умолчанию',
+        label: 'sort.default.title',
         value: '',
     },
     {
-        label: 'По возрастанию',
+        label: 'sort.asc.title',
         value: 'asc',
     },
     {
-        label: 'По убыванию',
+        label: 'sort.desc.title',
         value: 'desc',
     },
 ];

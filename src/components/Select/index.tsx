@@ -1,5 +1,6 @@
 import { Icon } from '@/components/Icon';
 import { styles } from '@/helpers/styles';
+import { IntlMessage } from '@/modules/Lang/components/IntlMessage';
 import {
     FC,
     FocusEvent,
@@ -79,7 +80,7 @@ export const Select: FC<IProps> = ({
                     onClick={handleOptionClick(option)}
                     type="button"
                 >
-                    {label}
+                    <IntlMessage id={label} />
                 </button>
             );
         });
@@ -96,7 +97,7 @@ export const Select: FC<IProps> = ({
                 onBlur={handleBlur}
                 type="button"
             >
-                {selectedValue.label}
+                <IntlMessage id={selectedValue.label} />
                 <Icon className={style.iconArrow} name="arrow" />
             </button>
             <div className={style.contentArea}>{_options}</div>

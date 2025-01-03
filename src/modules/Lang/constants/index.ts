@@ -1,10 +1,10 @@
 export const LANG_OPTIONS = [
     {
-        label: 'RU',
+        label: 'select.lang.ru',
         value: 'ru-RU',
     },
     {
-        label: 'EN',
+        label: 'select.lang.en',
         value: 'en-US',
     },
 ];

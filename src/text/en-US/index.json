@@ -9,5 +9,10 @@
     "header.links.cart": "Cart",
     "header.links.catalog": "Catalog",
     "header.links.home": "Home",
-    "home.toBuy": "buy now!"
+    "home.toBuy": "buy now!",
+    "select.lang.ru": "RU",
+    "select.lang.en": "EN",
+    "sort.default.title": "Default",
+    "sort.asc.title": "Ascending",
+    "sort.desc.title": "Descending"
 }
