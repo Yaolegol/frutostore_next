@@ -1,6 +1,10 @@
+import { IntlMessage } from '@/modules/Lang/components/IntlMessage';
 import { FC } from 'react';
-import style from './index.module.scss';
 
 export const Copyright: FC = () => {
-    return <div>© Все права защищены</div>;
+    return (
+        <div>
+            © <IntlMessage id="footer.copyright" />
+        </div>
+    );
 };

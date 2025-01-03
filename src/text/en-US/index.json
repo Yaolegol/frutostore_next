@@ -10,6 +10,7 @@
     "common.price.title": "Price",
     "filters.range.from.title": "From",
     "filters.range.to.title": "To",
+    "footer.copyright": "All rights reserved",
     "header.links.cart": "Cart",
     "header.links.catalog": "Catalog",
     "header.links.home": "Home",
