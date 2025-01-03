@@ -1,0 +1,24 @@
+@import '/src/styles/colors';
+
+.index {
+    background: $white;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    width: 800px;
+}
+
+.closeButton {
+    cursor: pointer;
+    height: 18px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 18px;
+}
+
+.closeIcon {
+    color: $gray;
+    height: 100%;
+    width: 100%;
+}

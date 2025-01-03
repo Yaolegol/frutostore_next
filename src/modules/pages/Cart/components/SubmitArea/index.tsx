@@ -1,24 +1,30 @@
 'use client';
 
 import { FieldInput } from '@/modules/Form/components/FieldInput';
+import { MODAL_NAMES } from '@/modules/Modal/constants';
+import { ModalContext } from '@/modules/Modal/context';
 import { EMAIL_REGEXP } from '@/regexp';
-import { ChangeEvent, FC, useCallback, useState } from 'react';
+import { ChangeEvent, FC, useCallback, useContext, useState } from 'react';
 import style from './index.module.scss';
 
 const INITIAL_FIELDS_STATE = {
     email: {
         error: '',
-        isValid: true,
+        isDirty: false,
+        isValid: false,
         value: '',
     },
     name: {
         error: '',
-        isValid: true,
+        isDirty: false,
+        isValid: false,
         value: '',
     },
 };
 
 export const SubmitArea: FC = () => {
+    const { modalShow } = useContext(ModalContext);
+
     const [fieldsState, setFieldsState] = useState(INITIAL_FIELDS_STATE);
     const { email, name } = fieldsState;
 
@@ -31,8 +37,8 @@ export const SubmitArea: FC = () => {
             return;
         }
 
-        console.log('SUBMIT!');
-    }, [fieldsState]);
+        modalShow?.(MODAL_NAMES.CHECKOUT_SUCCESS);
+    }, [fieldsState, modalShow]);
 
     const handleBlurEmail = useCallback(() => {
         const { email } = fieldsState;
@@ -68,6 +74,7 @@ export const SubmitArea: FC = () => {
                 ...fieldsState,
                 email: {
                     error: '',
+                    isDirty: true,
                     isValid: true,
                     value: e.target.value,
                 },
@@ -82,6 +89,7 @@ export const SubmitArea: FC = () => {
                 ...fieldsState,
                 name: {
                     error: '',
+                    isDirty: true,
                     isValid: true,
                     value: e.target.value,
                 },
@@ -97,7 +105,7 @@ export const SubmitArea: FC = () => {
                 <div className={style.container}>
                     <FieldInput
                         error={email.error}
-                        isValid={email.isValid}
+                        isValid={!email.isDirty || email.isValid}
                         name="email"
                         onBlur={handleBlurEmail}
                         onChange={handleChangeEmail}
@@ -108,7 +116,7 @@ export const SubmitArea: FC = () => {
                 <div className={style.container}>
                     <FieldInput
                         error={name.error}
-                        isValid={name.isValid}
+                        isValid={!name.isDirty || name.isValid}
                         name="name"
                         onBlur={handleBlurName}
                         onChange={handleChangeName}

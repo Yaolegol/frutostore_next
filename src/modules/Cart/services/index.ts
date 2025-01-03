@@ -49,6 +49,14 @@ export class CartService {
         return [];
     };
 
+    clearCart = () => {
+        try {
+            this.updateCart([]);
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
     decrementProductInCart = (id: number) => {
         try {
             let cart = this.getCart();

@@ -1,0 +1,13 @@
+@import "@/styles/font";
+
+.index {
+    text-align: center;
+}
+
+.description {
+    margin-top: 15px;
+}
+
+.title {
+    @include f_big;
+}

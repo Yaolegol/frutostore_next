@@ -1,0 +1,3 @@
+export enum MODAL_NAMES {
+    CHECKOUT_SUCCESS = 'CHECKOUT_SUCCESS',
+}

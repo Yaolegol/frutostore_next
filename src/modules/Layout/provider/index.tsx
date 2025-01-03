@@ -2,6 +2,7 @@ import { IOption } from '@/components/Select';
 import { CartProvider } from '@/modules/Cart/provider';
 import { Layout } from '@/modules/Layout/components/Layout';
 import { LangContextProvider } from '@/modules/Lang/provider';
+import { ModalProvider } from '@/modules/Modal/provider';
 import { FC, ReactNode } from 'react';
 
 interface IProps {
@@ -20,9 +21,11 @@ export const LayoutProvider: FC<IProps> = async ({
             defaultLangOption={defaultLangOption}
             defaultLangText={defaultLangText}
         >
-            <CartProvider>
-                <Layout>{children}</Layout>
-            </CartProvider>
+            <ModalProvider>
+                <CartProvider>
+                    <Layout>{children}</Layout>
+                </CartProvider>
+            </ModalProvider>
         </LangContextProvider>
     );
 };
