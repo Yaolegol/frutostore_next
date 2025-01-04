@@ -1,3 +1,9 @@
+@import "/src/styles/adaptive";
+
 @mixin page {
     margin-top: 48px;
+    
+    @media #{$tablet_max} {
+        margin-top: 12px;
+    }
 }

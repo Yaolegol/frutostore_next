@@ -15,6 +15,7 @@
     
     @media #{$tablet_max} {
         grid-template-columns: 1fr;
+        margin-top: 12px;
     }
 }
 
@@ -28,6 +29,10 @@
 
 .productsContainer {
     margin-top: 4px;
+    
+    @media #{$tablet_max} {
+        margin-top: 12px;
+    }
 }
 
 .showMoreButton {
