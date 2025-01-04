@@ -1,7 +1,12 @@
+@import "@/styles/adaptive";
 @import "@/styles/layout";
 
 .index {
     display: grid;
     gap: 40px;
     grid-template-columns: 8fr 4fr;
+    
+    @media #{$tablet_max} {
+        grid-template-columns: 1fr;
+    }
 }
