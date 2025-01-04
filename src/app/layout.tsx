@@ -1,8 +1,5 @@
 import { getServerLangData } from '@/helpers/lang/server';
-import { ModalProvider } from '@/modules/Modal/provider';
-import { CartProvider } from '@/modules/Cart/provider';
-import { Layout } from '@/modules/Layout/components/Layout';
-import { LangContextProvider } from '@/modules/Lang/provider';
+import { LayoutProvider } from '@/modules/Layout/provider';
 import { ReactNode } from 'react';
 import '@/styles/index.scss';
 
@@ -18,16 +15,12 @@ const RootLayout = async ({ children }: IProps) => {
             <head>
                 <link rel="icon" href="/favicon.svg" />
             </head>
-            <LangContextProvider
+            <LayoutProvider
                 defaultLangOption={defaultLangOption}
                 defaultLangText={defaultLangText}
             >
-                <ModalProvider>
-                    <CartProvider>
-                        <Layout>{children}</Layout>
-                    </CartProvider>
-                </ModalProvider>
-            </LangContextProvider>
+                {children}
+            </LayoutProvider>
         </html>
     );
 };

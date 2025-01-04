@@ -1,0 +1,28 @@
+@import '/src/styles/adaptive';
+@import '/src/styles/colors';
+
+.index {
+    height: 100%;
+    padding: 40px 20px;
+    position: relative;
+}
+
+.closeButton {
+    cursor: pointer;
+    height: 18px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 18px;
+    
+    @media #{$tablet_max} {
+        right: 12px;
+        top: 12px;
+    }
+}
+
+.closeIcon {
+    color: $gray;
+    height: 100%;
+    width: 100%;
+}
