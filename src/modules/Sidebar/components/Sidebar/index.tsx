@@ -1,13 +1,13 @@
 'use client';
 
 import { styles } from '@/helpers/styles';
+import { SIDEBAR_CONTENT_ID } from '@/modules/Sidebar/constants';
 import { SidebarContext } from '@/modules/Sidebar/context';
 import { FC, MouseEvent, useCallback, useContext, useRef } from 'react';
 import style from './index.module.scss';
 
 export const Sidebar: FC = () => {
-    const { isSidebarShow, setSidebarIsShow, sidebarContent } =
-        useContext(SidebarContext);
+    const { isSidebarShow, setSidebarIsShow } = useContext(SidebarContext);
     const ref = useRef<HTMLDivElement>(null);
 
     const handleClose = useCallback(() => {
@@ -32,7 +32,7 @@ export const Sidebar: FC = () => {
             role="button"
         >
             <div className={style.content} ref={ref}>
-                {sidebarContent}
+                <div id={SIDEBAR_CONTENT_ID} />
             </div>
         </div>
     );

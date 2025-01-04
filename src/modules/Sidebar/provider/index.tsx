@@ -8,17 +8,17 @@ interface IProps {
 }
 
 export const SidebarProvider: FC<IProps> = ({ children }) => {
+    const [sidebarContentName, setSidebarContentName] = useState('');
     const [isSidebarShow, setSidebarIsShow] = useState(false);
-    const [sidebarContent, setSidebarContent] = useState<ReactNode>();
 
     const value = useMemo(() => {
         return {
             isSidebarShow,
-            setSidebarContent,
+            setSidebarContentName,
             setSidebarIsShow,
-            sidebarContent,
+            sidebarContentName,
         };
-    }, [isSidebarShow, sidebarContent]);
+    }, [isSidebarShow, sidebarContentName]);
 
     return (
         <SidebarContext.Provider value={value}>

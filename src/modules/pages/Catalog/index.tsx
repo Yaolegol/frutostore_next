@@ -2,13 +2,14 @@
 
 import { Filters } from '@/modules/Filters/components/Filters';
 import { IntlMessage } from '@/modules/Lang/components/IntlMessage';
+import { MobileFilters } from '@/modules/pages/Catalog/components/MobileFilters';
+import { MobileFiltersButton } from '@/modules/pages/Catalog/components/MobileFiltersButton';
 import { Pagination } from '@/modules/pages/Catalog/components/Pagination';
 import { ProductList } from '@/modules/pages/Catalog/components/ProductList';
 import { ShowMoreButton } from '@/modules/pages/Catalog/components/ShowMoreButton';
 import { SortSelectController } from '@/modules/Sort/controllers/SortSelectController';
 import { FC } from 'react';
 import style from './index.module.scss';
-import { MobileFiltersButton } from '@/modules/pages/Catalog/components/MobileFiltersButton';
 
 export const Catalog: FC = () => {
     return (
@@ -36,6 +37,7 @@ export const Catalog: FC = () => {
                     </div>
                 </div>
             </div>
+            <MobileFilters />
         </div>
     );
 };
