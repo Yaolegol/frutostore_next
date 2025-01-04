@@ -11,6 +11,7 @@
     "common.price.title": "Цена",
     "filters.range.from.title": "От",
     "filters.range.to.title": "До",
+    "filters.title": "Фильтры",
     "footer.copyright": "Все права защищены",
     "form.errors.email": "Введите корректный email",
     "form.errors.name": "Введите имя",

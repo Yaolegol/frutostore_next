@@ -11,6 +11,7 @@
     "common.price.title": "Price",
     "filters.range.from.title": "From",
     "filters.range.to.title": "To",
+    "filters.title": "Filters",
     "footer.copyright": "All rights reserved",
     "form.errors.email": "Please enter a valid email",
     "form.errors.name": "Please enter your name",

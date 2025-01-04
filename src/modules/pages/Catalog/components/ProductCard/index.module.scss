@@ -4,9 +4,15 @@
 
 .index {
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .container {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
     padding: 15px 10px 20px;
 }
 

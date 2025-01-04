@@ -8,6 +8,7 @@ import { ShowMoreButton } from '@/modules/pages/Catalog/components/ShowMoreButto
 import { SortSelectController } from '@/modules/Sort/controllers/SortSelectController';
 import { FC } from 'react';
 import style from './index.module.scss';
+import { MobileFiltersButton } from '@/modules/pages/Catalog/components/MobileFiltersButton';
 
 export const Catalog: FC = () => {
     return (
@@ -21,6 +22,7 @@ export const Catalog: FC = () => {
                 </div>
                 <div>
                     <div className={style.sortContainer}>
+                        <MobileFiltersButton />
                         <SortSelectController />
                     </div>
                     <div className={style.productsContainer}>
