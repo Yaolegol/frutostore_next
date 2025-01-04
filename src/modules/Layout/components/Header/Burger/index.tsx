@@ -1,15 +1,16 @@
 'use client';
 
-import { SIDEBAR_NAMES } from '@/modules/Sidebar/constants';
+import { MobileMenu } from '@/modules/Layout/components/Header/MobileMenu';
 import { SidebarContext } from '@/modules/Sidebar/context';
 import { FC, useContext } from 'react';
 import style from './index.module.scss';
 
 export const Burger: FC = () => {
-    const { sidebarShow } = useContext(SidebarContext);
+    const { setSidebarContent, setSidebarIsShow } = useContext(SidebarContext);
 
     const onClick = () => {
-        sidebarShow?.(SIDEBAR_NAMES.MENU);
+        setSidebarContent?.(<MobileMenu />);
+        setSidebarIsShow?.(true);
     };
 
     return (

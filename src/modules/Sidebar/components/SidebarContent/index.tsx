@@ -1,24 +1,20 @@
 'use client';
 
 import { Icon } from '@/components/Icon';
-import { SIDEBAR_NAMES } from '@/modules/Sidebar/constants';
 import { SidebarContext } from '@/modules/Sidebar/context';
 import { FC, ReactNode, useCallback, useContext } from 'react';
 import style from './index.module.scss';
 
 interface IProps {
     children: ReactNode;
-    name: SIDEBAR_NAMES;
-    onClose?: () => void;
 }
 
-export const SidebarContent: FC<IProps> = ({ children, name, onClose }) => {
-    const { sidebarHide } = useContext(SidebarContext);
+export const SidebarContent: FC<IProps> = ({ children }) => {
+    const { setSidebarIsShow } = useContext(SidebarContext);
 
     const handleClick = useCallback(() => {
-        onClose?.();
-        sidebarHide?.(name);
-    }, [name, onClose, sidebarHide]);
+        setSidebarIsShow?.(false);
+    }, [setSidebarIsShow]);
 
     return (
         <div className={style.index}>

@@ -1,39 +1,24 @@
 'use client';
 
-import { SIDEBAR_NAMES } from '@/modules/Sidebar/constants';
 import { SidebarContext } from '@/modules/Sidebar/context';
-import { FC, ReactNode, useCallback, useMemo, useState } from 'react';
+import { FC, ReactNode, useMemo, useState } from 'react';
 
 interface IProps {
     children: ReactNode;
 }
 
 export const SidebarProvider: FC<IProps> = ({ children }) => {
-    const [showingSidebars, setShowingSidebars] = useState<SIDEBAR_NAMES[]>([]);
-
-    const sidebarHide = useCallback(
-        (name: SIDEBAR_NAMES) => {
-            setShowingSidebars(
-                showingSidebars.filter((modalName) => modalName !== name),
-            );
-        },
-        [showingSidebars],
-    );
-
-    const sidebarShow = useCallback(
-        (name: SIDEBAR_NAMES) => {
-            setShowingSidebars([...showingSidebars, name]);
-        },
-        [showingSidebars],
-    );
+    const [isSidebarShow, setSidebarIsShow] = useState(false);
+    const [sidebarContent, setSidebarContent] = useState<ReactNode>();
 
     const value = useMemo(() => {
         return {
-            showingSidebars,
-            sidebarHide,
-            sidebarShow,
+            isSidebarShow,
+            setSidebarContent,
+            setSidebarIsShow,
+            sidebarContent,
         };
-    }, [showingSidebars, sidebarHide, sidebarShow]);
+    }, [isSidebarShow, sidebarContent]);
 
     return (
         <SidebarContext.Provider value={value}>
