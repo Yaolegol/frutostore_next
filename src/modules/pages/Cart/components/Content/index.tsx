@@ -1,6 +1,5 @@
 'use client';
 
-import { CheckoutModal } from '@/modules/pages/Cart/components/CheckoutModal';
 import { ProductList } from '@/modules/pages/Cart/components/ProductList';
 import { SubmitArea } from '@/modules/pages/Cart/components/SubmitArea';
 import { FC } from 'react';
@@ -15,7 +14,6 @@ export const Content: FC = () => {
             <div className={style.submit}>
                 <SubmitArea />
             </div>
-            <CheckoutModal />
         </div>
     );
 };
