@@ -1,3 +1,4 @@
+@import '/src/styles/adaptive';
 @import '/src/styles/colors';
 @import '/src/styles/transition';
 
@@ -22,6 +23,10 @@
     margin: auto;
     max-height: 100%;
     overflow: auto;
+    
+    @media #{$tablet_max} {
+        width: 100%;
+    }
 }
 
 .contentArea {
@@ -29,4 +34,8 @@
     height: 100%;
     margin: auto;
     padding: 20px;
+    
+    @media #{$tablet_max} {
+        width: 100%;
+    }
 }

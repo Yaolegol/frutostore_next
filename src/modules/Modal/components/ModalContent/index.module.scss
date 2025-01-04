@@ -1,3 +1,4 @@
+@import '/src/styles/adaptive';
 @import '/src/styles/colors';
 
 .index {
@@ -6,6 +7,11 @@
     padding: 20px;
     position: relative;
     width: 800px;
+    
+    @media #{$tablet_max} {
+        padding: 30px 20px;
+        width: 100%;
+    }
 }
 
 .closeButton {
@@ -15,6 +21,11 @@
     right: 20px;
     top: 20px;
     width: 18px;
+    
+    @media #{$tablet_max} {
+        right: 16px;
+        top: 16px;
+    }
 }
 
 .closeIcon {
