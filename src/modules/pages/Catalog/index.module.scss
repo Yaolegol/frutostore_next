@@ -27,6 +27,12 @@
     }
 }
 
+.mobile {
+    @media #{$laptop_min} {
+        display: none;
+    }
+}
+
 .productsContainer {
     margin-top: 4px;
     
@@ -42,5 +48,9 @@
 .sortContainer {
     align-items: center;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    
+    @media #{$tablet_max} {
+        justify-content: space-between;
+    }
 }

@@ -23,7 +23,10 @@ export const Catalog: FC = () => {
                 </div>
                 <div>
                     <div className={style.sortContainer}>
-                        <MobileFiltersButton />
+                        <div className={style.mobile}>
+                            <MobileFiltersButton />
+                        </div>
+
                         <SortSelectController />
                     </div>
                     <div className={style.productsContainer}>
