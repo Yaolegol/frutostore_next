@@ -13,8 +13,10 @@ export const Burger: FC = () => {
     };
 
     return (
-        <button className={style.button} onClick={onClick} type="button">
-            test
+        <button className={style.index} onClick={onClick} type="button">
+            <div className={style.line} />
+            <div className={style.line} />
+            <div className={style.line} />
         </button>
     );
 };
