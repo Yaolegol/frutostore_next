@@ -1,3 +1,4 @@
+@import "@/styles/adaptive";
 @import "@/styles/layout";
 @import "@/styles/page";
 
@@ -11,10 +12,18 @@
     gap: 20px;
     grid-template-columns: 1fr 3fr;
     margin-top: 48px;
+    
+    @media #{$tablet_max} {
+        grid-template-columns: 1fr;
+    }
 }
 
 .filters {
     padding-right: 40px;
+    
+    @media #{$tablet_max} {
+        display: none;
+    }
 }
 
 .productsContainer {
