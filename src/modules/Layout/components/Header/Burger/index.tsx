@@ -1,17 +1,15 @@
 'use client';
 
-import { SIDEBAR_MENU_CONTENT_NAME } from '@/modules/Layout/constants';
+import { SIDEBAR_NAMES } from '@/modules/Sidebar/constants';
 import { SidebarContext } from '@/modules/Sidebar/context';
 import { FC, useContext } from 'react';
 import style from './index.module.scss';
 
 export const Burger: FC = () => {
-    const { setSidebarContentName, setSidebarIsShow } =
-        useContext(SidebarContext);
+    const { sidebarShow } = useContext(SidebarContext);
 
     const handleClick = () => {
-        setSidebarIsShow?.(true);
-        setSidebarContentName?.(SIDEBAR_MENU_CONTENT_NAME);
+        sidebarShow?.(SIDEBAR_NAMES.MENU);
     };
 
     return (

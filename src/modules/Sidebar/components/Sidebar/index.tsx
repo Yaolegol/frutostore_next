@@ -1,18 +1,29 @@
 'use client';
 
 import { styles } from '@/helpers/styles';
-import { SIDEBAR_CONTENT_ID } from '@/modules/Sidebar/constants';
+import { SIDEBAR_NAMES } from '@/modules/Sidebar/constants';
 import { SidebarContext } from '@/modules/Sidebar/context';
-import { FC, MouseEvent, useCallback, useContext, useRef } from 'react';
+import {
+    FC,
+    MouseEvent,
+    ReactNode,
+    useCallback,
+    useContext,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import style from './index.module.scss';
 
-export const Sidebar: FC = () => {
-    const { isSidebarShow, setSidebarIsShow } = useContext(SidebarContext);
-    const ref = useRef<HTMLDivElement>(null);
+interface IProps {
+    children: ReactNode;
+    name: SIDEBAR_NAMES;
+}
 
-    const handleClose = useCallback(() => {
-        setSidebarIsShow?.(false);
-    }, [setSidebarIsShow]);
+export const Sidebar: FC<IProps> = ({ children, name }) => {
+    const [isClientRender, setIsClientRender] = useState(false);
+    const { sidebarHide, showingSidebars } = useContext(SidebarContext);
+    const ref = useRef<HTMLDivElement>(null);
 
     const handleBackDropClick = useCallback(
         (e: MouseEvent<HTMLDivElement>) => {
@@ -20,19 +31,29 @@ export const Sidebar: FC = () => {
                 return;
             }
 
-            handleClose();
+            sidebarHide?.(name);
         },
-        [handleClose],
+        [name, sidebarHide],
     );
+
+    useEffect(() => {
+        setIsClientRender(true);
+    }, []);
+
+    if (!isClientRender) {
+        return null;
+    }
+
+    const isShow = showingSidebars.includes(name);
 
     return (
         <div
-            className={styles(style.index, isSidebarShow ? style.isShow : '')}
+            className={styles(style.index, isShow ? style.isShow : '')}
             onClick={handleBackDropClick}
             role="button"
         >
             <div className={style.content} ref={ref}>
-                <div id={SIDEBAR_CONTENT_ID} />
+                {children}
             </div>
         </div>
     );

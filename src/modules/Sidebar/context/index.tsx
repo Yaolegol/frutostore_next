@@ -1,14 +1,14 @@
 'use client';
 
-import { createContext, Dispatch, SetStateAction } from 'react';
+import { SIDEBAR_NAMES } from '@/modules/Sidebar/constants';
+import { createContext } from 'react';
 
 export interface ISidebarContext {
-    isSidebarShow: boolean;
-    setSidebarContentName?: Dispatch<SetStateAction<string>>;
-    setSidebarIsShow?: Dispatch<SetStateAction<boolean>>;
-    sidebarContentName?: string;
+    showingSidebars: SIDEBAR_NAMES[];
+    sidebarHide?: (name: SIDEBAR_NAMES) => void;
+    sidebarShow?: (name: SIDEBAR_NAMES) => void;
 }
 
 export const SidebarContext = createContext<ISidebarContext>({
-    isSidebarShow: false,
+    showingSidebars: [],
 });

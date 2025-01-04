@@ -2,16 +2,17 @@
 
 import { IntlMessage } from '@/modules/Lang/components/IntlMessage';
 import { NavLink } from '@/modules/Layout/components/Header/NavLink';
+import { SIDEBAR_NAMES } from '@/modules/Sidebar/constants';
 import { SidebarContext } from '@/modules/Sidebar/context';
-import { ROUTE_HOME, ROUTE_CATALOG, ROUTE_CART } from '@/routing';
+import { ROUTE_CART, ROUTE_CATALOG, ROUTE_HOME } from '@/routing';
 import { FC, useContext } from 'react';
 import style from './index.module.scss';
 
 export const NavMobile: FC = () => {
-    const { setSidebarIsShow } = useContext(SidebarContext);
+    const { sidebarHide } = useContext(SidebarContext);
 
     const handleClick = () => {
-        setSidebarIsShow?.(false);
+        sidebarHide?.(SIDEBAR_NAMES.MENU);
     };
 
     return (

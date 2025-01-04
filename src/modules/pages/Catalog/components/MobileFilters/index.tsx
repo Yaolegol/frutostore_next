@@ -2,16 +2,18 @@
 
 import { Filters } from '@/modules/Filters/components/Filters';
 import { IntlMessage } from '@/modules/Lang/components/IntlMessage';
+import { Sidebar } from '@/modules/Sidebar/components/Sidebar';
 import { SidebarContent } from '@/modules/Sidebar/components/SidebarContent';
-import { SidebarPortal } from '@/modules/Sidebar/components/SidebarPortal';
-import { SIDEBAR_FILTERS_CONTENT_NAME } from '@/modules/pages/Catalog/constants';
+import { SIDEBAR_NAMES } from '@/modules/Sidebar/constants';
 import { FC } from 'react';
 import style from './index.module.scss';
 
+const { CATALOG_FILTERS } = SIDEBAR_NAMES;
+
 export const MobileFilters: FC = () => {
     return (
-        <SidebarPortal name={SIDEBAR_FILTERS_CONTENT_NAME}>
-            <SidebarContent>
+        <Sidebar name={CATALOG_FILTERS}>
+            <SidebarContent name={CATALOG_FILTERS}>
                 <div className={style.index}>
                     <IntlMessage id="filters.title" />
                     <div className={style.content}>
@@ -19,6 +21,6 @@ export const MobileFilters: FC = () => {
                     </div>
                 </div>
             </SidebarContent>
-        </SidebarPortal>
+        </Sidebar>
     );
 };

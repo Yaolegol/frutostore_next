@@ -1,18 +1,16 @@
 'use client';
 
 import { Icon } from '@/components/Icon';
-import { SIDEBAR_FILTERS_CONTENT_NAME } from '@/modules/pages/Catalog/constants';
+import { SIDEBAR_NAMES } from '@/modules/Sidebar/constants';
 import { SidebarContext } from '@/modules/Sidebar/context';
 import { FC, useContext } from 'react';
 import style from './index.module.scss';
 
 export const MobileFiltersButton: FC = () => {
-    const { setSidebarContentName, setSidebarIsShow } =
-        useContext(SidebarContext);
+    const { sidebarShow } = useContext(SidebarContext);
 
     const handleClick = () => {
-        setSidebarContentName?.(SIDEBAR_FILTERS_CONTENT_NAME);
-        setSidebarIsShow?.(true);
+        sidebarShow?.(SIDEBAR_NAMES.CATALOG_FILTERS);
     };
 
     return (
