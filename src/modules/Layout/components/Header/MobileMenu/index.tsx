@@ -1,3 +1,4 @@
+import { SelectLang } from '@/modules/Lang/components/SelectLang';
 import { NavMobile } from '@/modules/Layout/components/Header/NavMobile';
 import { Sidebar } from '@/modules/Sidebar/components/Sidebar';
 import { SidebarContent } from '@/modules/Sidebar/components/SidebarContent';
@@ -11,6 +12,9 @@ export const MobileMenu: FC = () => {
             <SidebarContent name={SIDEBAR_NAMES.MENU}>
                 <div className={style.index}>
                     <NavMobile />
+                    <div className={style.langContainer}>
+                        <SelectLang />
+                    </div>
                 </div>
             </SidebarContent>
         </Sidebar>
