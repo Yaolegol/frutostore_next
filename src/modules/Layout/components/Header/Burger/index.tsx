@@ -8,13 +8,13 @@ import style from './index.module.scss';
 export const Burger: FC = () => {
     const { setSidebarContent, setSidebarIsShow } = useContext(SidebarContext);
 
-    const onClick = () => {
+    const handleClick = () => {
         setSidebarContent?.(<MobileMenu />);
         setSidebarIsShow?.(true);
     };
 
     return (
-        <button className={style.index} onClick={onClick} type="button">
+        <button className={style.index} onClick={handleClick} type="button">
             <div className={style.line} />
             <div className={style.line} />
             <div className={style.line} />

@@ -9,9 +9,10 @@ import style from './index.module.scss';
 interface IProps {
     children: ReactNode;
     href: string;
+    onClick?: () => void;
 }
 
-export const NavLink: FC<IProps> = ({ children, href }) => {
+export const NavLink: FC<IProps> = ({ children, href, onClick }) => {
     const pathname = usePathname();
 
     const isActive = pathname === href;
@@ -20,6 +21,7 @@ export const NavLink: FC<IProps> = ({ children, href }) => {
         <Link
             className={styles(style.index, isActive ? style.active : '')}
             href={href}
+            onClick={onClick}
         >
             {children}
         </Link>
