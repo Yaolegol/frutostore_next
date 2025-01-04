@@ -1,3 +1,4 @@
+@import "/src/styles/adaptive";
 @import "/src/styles/colors";
 @import "/src/styles/shadow";
 @import "/src/styles/transition";
@@ -7,10 +8,13 @@
     box-shadow: $shadow-1;
     cursor: pointer;
     padding: 20px 40px;
-    text-transform: uppercase;
     transition: $transitionDefault;
 
     &:hover {
         background: $green;
+    }
+    
+    @media #{$tablet_max} {
+        padding: 10px 20px;
     }
 }

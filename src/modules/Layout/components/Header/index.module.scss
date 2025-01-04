@@ -1,15 +1,18 @@
-@import "@/styles/layout";
+@import "@/styles/adaptive";
 @import "@/styles/shadow";
 
 .index {
     box-shadow: $shadow
 }
 
-.container {
-    @include layout-container;
+.desktop {
+    @media #{$tablet_max} {
+        display: none;
+    }
+}
 
-    align-items: center;
-    display: flex;
-    padding-bottom: 20px;
-    padding-top: 20px;
+.mobile {
+    @media #{$laptop_min} {
+        display: none;
+    }
 }

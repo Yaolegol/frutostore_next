@@ -1,0 +1,11 @@
+@import "@/styles/layout";
+
+.index {
+    @include layout-container;
+
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}

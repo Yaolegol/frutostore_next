@@ -1,3 +1,5 @@
+@import "@/styles/adaptive";
+
 .index {
     align-items: center;
     display: flex;
@@ -11,4 +13,15 @@
     height: 60px;
     object-fit: contain;
     width: 60px;
+    
+    @media #{$tablet_max} {
+        height: 30px;
+        width: 30px;
+    }
+}
+
+.title {
+    @media #{$tablet_max} {
+        display: none;
+    }
 }

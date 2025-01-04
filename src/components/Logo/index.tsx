@@ -7,7 +7,7 @@ export const Logo: FC = () => {
     return (
         <Link className={style.index} href={ROUTE_HOME}>
             <img alt="logo" className={style.image} src="/images/logo.svg" />
-            Frutostore
+            <div className={style.title}>Frutostore</div>
         </Link>
     );
 };
