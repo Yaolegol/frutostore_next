@@ -1,4 +1,4 @@
-const API_HOST = 'http://localhost:8000/api';
+const API_HOST = 'https://frutostore.oleg-oleinik.com/api';
 
 export class ApiService {
     private constructor() {}
