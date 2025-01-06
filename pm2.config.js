@@ -4,6 +4,7 @@ module.exports = {
         {
             env: {
                 NODE_ENV: 'production',
+                PORT: 3001,
             },
             name: 'frutostore',
             script: 'npm start',
